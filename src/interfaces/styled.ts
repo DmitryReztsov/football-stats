@@ -15,5 +15,4 @@ export interface ILightTheme {
     medium: string
     small: string
   }
-
 }
