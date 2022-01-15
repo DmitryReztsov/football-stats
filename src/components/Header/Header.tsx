@@ -1,51 +1,47 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
 import CustomLink from "../microcomponents/links/CustomLink/CustomLink";
+import {Title1} from "../microcomponents/titles/Titles";
+import Container from "../Container/Container";
 
 const StyledHeader = styled.header`
   background-color: ${({theme}) => theme.colors.dark_green};
-  
-  h1 {
-    text-align: center;
-    font-size: 3rem;
-    padding: 1rem;
-    color: ${({theme}) => theme.colors.font_light};
-    font-weight: 700;
-    letter-spacing: 0.1rem;
-  }
+  padding: 2rem;
   
   nav {
     text-align: center;
     font-size: 1.5rem;
     padding: 0.5rem;
-    color: ${({theme}) => theme.colors.font_light};
+    color: ${({theme}) => theme.colors.black};
   }
   
   ul {
     display: inline-flex;
   }
   li {
-    margin: 0 0.25rem;
+    margin: 0 0.5rem;
   }
 `
 
 const Header: FC = () => {
   return (
     <StyledHeader>
-      <h1>Football Stats</h1>
-      <nav>
-        <ul>
-          <li>
-            <CustomLink to={"/"}>Home</CustomLink>
-          </li>
-          <li>
-            <CustomLink to={"/leagues"}>Leagues</CustomLink>
-          </li>
-          <li>
-            <CustomLink to={"/teams"}>Teams</CustomLink>
-          </li>
-        </ul>
-      </nav>
+      <Container>
+        <Title1>Football Stats</Title1>
+        <nav>
+          <ul>
+            <li>
+              <CustomLink to={"/"}>Home</CustomLink>
+            </li>
+            <li>
+              <CustomLink to={"/leagues"}>Leagues</CustomLink>
+            </li>
+            <li>
+              <CustomLink to={"/teams"}>Teams</CustomLink>
+            </li>
+          </ul>
+        </nav>
+      </Container>
     </StyledHeader>
   );
 };

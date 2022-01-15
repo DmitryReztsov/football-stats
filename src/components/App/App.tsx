@@ -5,11 +5,11 @@ import Homepage from "../pages/Homepage/Homepage";
 import Leagues from "../pages/Leagues/Leagues";
 import Teams from "../pages/Teams/Teams";
 import styled from "styled-components";
-import {absolute} from "../../styles/fragments";
 
 const StyledApp = styled.div`
-  background-color: ${({theme}) => theme.colors.light_brown};
-  ${absolute};
+  background-color: ${({theme}) => theme.colors.white};
+  flex: 1 1 auto;
+  display: flex;
 `
 
 function App() {

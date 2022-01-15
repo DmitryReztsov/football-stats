@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components"
-import {lightTheme, darkTheme} from "./theme";
+import {lightTheme} from "./theme";
 
 
 export const Global = createGlobalStyle`
@@ -46,7 +46,7 @@ export const Global = createGlobalStyle`
         -webkit-text-size-adjust: 100%;
         font-family: 'Roboto', sans-serif;
         background-color: ${lightTheme.colors.bg};
-        color: ${lightTheme.colors.font_dark}
+        color: ${lightTheme.colors.black}
     }
     
     input,

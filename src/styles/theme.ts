@@ -7,8 +7,8 @@ export const lightTheme : ILightTheme = {
         light_green: '#6ab29b',
         light_brown: '#e4d5c7',
         bg: '#ffffff',
-        font_light: '#ffffff',
-        font_dark: '#19191B',
+        white: '#ffffff',
+        black: '#19191B',
     },
 
     media: {
@@ -20,6 +20,3 @@ export const lightTheme : ILightTheme = {
 
 }
 
-export const darkTheme = {
-
-}

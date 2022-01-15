@@ -4,7 +4,7 @@ import App from './components/App/App';
 import {BrowserRouter} from "react-router-dom";
 import {Global} from "./styles/global";
 import {ThemeProvider} from "styled-components";
-import {lightTheme, darkTheme} from "./styles/theme";
+import {lightTheme} from "./styles/theme";
 
 ReactDOM.render(
     <ThemeProvider theme={lightTheme}>

@@ -2,10 +2,15 @@ import React, {FC} from 'react';
 import {Outlet} from 'react-router-dom';
 import Header from '../Header/Header';
 import styled from "styled-components";
+import Footer from "../Footer/Footer";
 
 const StyledLayout = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
+  min-height: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 0 3px 1px #9e9c9c;
 `
 
 const Layout: FC = () => {
@@ -13,7 +18,7 @@ const Layout: FC = () => {
     <StyledLayout>
       <Header/>
       <Outlet/>
-
+      <Footer/>
     </StyledLayout>
   );
 };

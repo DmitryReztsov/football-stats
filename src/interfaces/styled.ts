@@ -5,8 +5,8 @@ export interface ILightTheme {
     light_green: string,
     light_brown: string,
     bg: string,
-    font_light: string,
-    font_dark: string,
+    white: string,
+    black: string,
   }
 
   media: {
