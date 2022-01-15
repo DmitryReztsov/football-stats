@@ -46,7 +46,7 @@ export const Global = createGlobalStyle`
         -webkit-text-size-adjust: 100%;
         font-family: 'Roboto', sans-serif;
         background-color: ${lightTheme.colors.bg};
-        color: ${lightTheme.colors.font}
+        color: ${lightTheme.colors.font_dark}
     }
     
     input,
