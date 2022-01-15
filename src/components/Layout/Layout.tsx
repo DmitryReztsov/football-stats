@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from "../Header/Header";
+import Header from '../Header/Header';
 
 const Layout: FC = () => {
     return (
@@ -8,7 +8,6 @@ const Layout: FC = () => {
             <Header/>
             <Outlet/>
         </>
-
     );
 };
 

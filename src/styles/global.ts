@@ -1,7 +1,8 @@
 import { createGlobalStyle } from "styled-components"
+import {lightTheme, darkTheme} from "./theme";
+
 
 export const Global = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
     
     * {
         margin: 0;
@@ -44,7 +45,8 @@ export const Global = createGlobalStyle`
         -moz-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
         font-family: 'Roboto', sans-serif;
-        background-color: #f4f5f6;
+        background-color: ${lightTheme.colors.bg};
+        color: ${lightTheme.colors.font}
     }
     
     input,
