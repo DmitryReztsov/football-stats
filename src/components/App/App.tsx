@@ -2,14 +2,14 @@ import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Layout from "../Layout/Layout";
 import Homepage from "../pages/Homepage/Homepage";
-import Leagues from "../pages/Leagues/Leagues";
+import Competitions from "../pages/Leagues/Competitions";
 import Teams from "../pages/Teams/Teams";
 import styled from "styled-components";
 
 const StyledApp = styled.div`
-  background-color: ${({theme}) => theme.colors.white};
-  flex: 1 1 auto;
-  display: flex;
+    background-color: ${({theme}) => theme.colors.white};
+    flex: 1 1 auto;
+    display: flex;
 `
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Layout/>}>
           <Route index element={<Homepage/>}/>
-          <Route path={"leagues"} element={<Leagues/>}/>
+          <Route path={"competitions"} element={<Competitions/>}/>
           <Route path={"teams"} element={<Teams/>}/>
         </Route>
       </Routes>

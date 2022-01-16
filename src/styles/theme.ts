@@ -1,6 +1,6 @@
 import {ILightTheme} from "../interfaces/styled";
 
-export const lightTheme : ILightTheme = {
+export const lightTheme: ILightTheme = {
     colors: {
         dark_green: '#186049',
         middle_green: '#247158',
