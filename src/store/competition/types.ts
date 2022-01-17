@@ -1,3 +1,12 @@
+export interface ICompetition {
+    id: number,
+    name: string,
+    emblemUrl: string,
+    startDate: string,
+    endDate: string,
+    plan: string,
+}
+
 export enum CompetitionActionTypes {
     FETCH_COMPETITION = 'FETCH_COMPETITION',
 }

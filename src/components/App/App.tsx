@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Layout from "../Layout/Layout";
 import Homepage from "../pages/Homepage/Homepage";
-import Competitions from "../pages/Leagues/Competitions";
+import Competitions from "../pages/Competitions/Competitions";
 import Teams from "../pages/Teams/Teams";
 import styled from "styled-components";
 

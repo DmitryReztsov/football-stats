@@ -1,7 +1,7 @@
-import {CompetitionAction, CompetitionActionTypes} from "./types";
+import {CompetitionAction, CompetitionActionTypes, ICompetition} from "./types";
 
 
-export function competitionReducer (state: any[] = [], action : CompetitionAction) {
+export function competitionReducer (state: ICompetition[] = [], action : CompetitionAction) {
     switch (action.type) {
         case CompetitionActionTypes.FETCH_COMPETITION: {
             return action.payload
