@@ -2,14 +2,17 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
 import {competitionReducer} from "./competition/reducer";
 import {loadingReducer} from "./loading/reducer";
+import {composeWithDevTools} from "redux-devtools-extension";
+import {errorReducer} from "./error/reducer";
 
 export type RootState = ReturnType<typeof combinedReducer>
 
 const combinedReducer = combineReducers({
     competition: competitionReducer,
     loading: loadingReducer,
+    error: errorReducer,
 });
 
-export const store = createStore(combinedReducer,{}, applyMiddleware(thunk))
+const composeEnhancers = composeWithDevTools({});
 
-export default store;
+export const store = createStore(combinedReducer,{}, composeEnhancers(applyMiddleware(thunk)));
