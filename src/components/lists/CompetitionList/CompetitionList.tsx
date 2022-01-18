@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
+import {ICompetition} from "../../../store/competition/types";
 
 const StyledCompetitionList = styled.div`
     display: flex;
@@ -15,13 +16,23 @@ const StyledCompetitionList = styled.div`
 `
 
 interface ICompetitionList {
-    children: React.ReactNode []
+    competitions: ICompetition []
 }
 
-const CompetitionList: FC<ICompetitionList> = ({children}) => {
+const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
     return (
         <StyledCompetitionList>
-            {children}
+            {competitions.map((comp) => {
+                return (
+                    <div
+                        key={comp.id}
+                    >
+                        <div style={{background: `url(/assets/${comp.code}.png) center no-repeat`, width: 100, height: 100, backgroundSize: "contain"}}/>
+                        <p>{comp.name}</p>
+                        <p></p>
+                    </div>
+                )
+            })}
         </StyledCompetitionList>
     );
 };
