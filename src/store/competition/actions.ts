@@ -3,7 +3,6 @@ import {Dispatch} from "redux";
 import axios from "axios";
 import {BASEURL, getCompetitionsUrl} from "../../utils/urls";
 import {TIER, TOKEN} from "../../utils/settings";
-import {LoadingActionTypes} from "../loading/types";
 
 export const fetchCompetition = () => {
     return async (dispatch: Dispatch<CompetitionAction>) => {
@@ -21,7 +20,7 @@ export const fetchCompetition = () => {
                     competitions.push({
                         id: comps[i].id,
                         name: comps[i].name,
-                        emblemUrl: comps[i].emblemUrl,
+                        code: comps[i].code,
                         startDate: comps[i].startDate,
                         endDate: comps[i].endDate,
                     })

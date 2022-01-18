@@ -1,7 +1,7 @@
 export interface ICompetition {
     id: number,
     name: string,
-    emblemUrl: string,
+    code: string,
     startDate: string,
     endDate: string,
 }

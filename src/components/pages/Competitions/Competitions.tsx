@@ -3,6 +3,8 @@ import {useTypedSelector} from "../../../store/selectors";
 import {fetchCompetition} from "../../../store/competition/actions";
 import {useDispatch} from "react-redux";
 import {Title2} from "../../microcomponents/titles/Titles";
+import CompetitionList from "../../lists/CompetitionList/CompetitionList";
+import {url} from "inspector";
 
 const Competitions: FC = () => {
     const {competitions, loading, error} = useTypedSelector(state => state.competition)
@@ -25,10 +27,20 @@ const Competitions: FC = () => {
             <Title2 centered>
                 Actual competitions
             </Title2>
-            <div>
+            <CompetitionList>
                 {competitions.map((comp) => {
-                    return <div key={comp.id}>{comp.name}</div>
+                    return (
+                        <div
+                            key={comp.id}
+                        >
+                            <div style={{backgroundImage: `url(../src/assets/${comp.code}.png)`}}/>
+                            {comp.name}
+                        </div>
+                    )
                 })}
+            </CompetitionList>
+            <div>
+
             </div>
         </div>
     );
