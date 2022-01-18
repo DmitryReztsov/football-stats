@@ -13,20 +13,17 @@ const Competitions: FC = () => {
         dispatch(fetchCompetition())
     }, [])
 
-    if (loading) {
-        return <h1>Идет загрузка...</h1>
-    }
-
-    if (error) {
-        return <h1>Ууу, ошибка! {error.message}</h1>
-    }
 
     return (
         <div>
             <Title2 centered>
                 Actual competitions
             </Title2>
-            <CompetitionList competitions={competitions}/>
+            {loading ? <img src={'/gifs/loading.gif'} style={{backgroundColor: 'white', display: "block", margin: '0 auto'}}/>:
+                error ? <h2>Ууу, ошибка! {error.message}</h2> :
+                    <CompetitionList competitions={competitions}/>
+            }
+
         </div>
     );
 };
