@@ -8,11 +8,11 @@ import {errorReducer} from "./error/reducer";
 export type RootState = ReturnType<typeof combinedReducer>
 
 const combinedReducer = combineReducers({
-    competition: competitionReducer,
-    loading: loadingReducer,
-    error: errorReducer,
+  competition: competitionReducer,
+  loading: loadingReducer,
+  error: errorReducer,
 });
 
 const composeEnhancers = composeWithDevTools({});
 
-export const store = createStore(combinedReducer,{}, composeEnhancers(applyMiddleware(thunk)));
+export const store = createStore(combinedReducer, {}, composeEnhancers(applyMiddleware(thunk)));

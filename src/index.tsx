@@ -9,13 +9,13 @@ import {Provider} from "react-redux";
 import {store} from "./store";
 
 ReactDOM.render(
-    <ThemeProvider theme={lightTheme}>
-        <Provider store={store}>
-        <BrowserRouter>
-            <App/>
-            <Global/>
-        </BrowserRouter>
-            </Provider>
-    </ThemeProvider>,
-    document.getElementById('root')
+  <ThemeProvider theme={lightTheme}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App/>
+        <Global/>
+      </BrowserRouter>
+    </Provider>
+  </ThemeProvider>,
+  document.getElementById('root')
 );

@@ -6,26 +6,27 @@ import {Title2} from "../../microcomponents/titles/Titles";
 import CompetitionList from "../../lists/CompetitionList/CompetitionList";
 
 const Competitions: FC = () => {
-    const {competitions, loading, error} = useTypedSelector(state => state.competition)
-    const dispatch = useDispatch()
+  const {competitions, loading, error} = useTypedSelector(state => state.competition)
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(fetchCompetition())
-    }, [])
+  useEffect(() => {
+    dispatch(fetchCompetition())
+  }, [])
 
 
-    return (
-        <div>
-            <Title2 centered>
-                Actual competitions
-            </Title2>
-            {loading ? <img src={'/gifs/loading.gif'} style={{backgroundColor: 'white', display: "block", margin: '0 auto'}}/>:
-                error ? <h2>Ууу, ошибка! {error.message}</h2> :
-                    <CompetitionList competitions={competitions}/>
-            }
+  return (
+    <div>
+      <Title2 centered>
+        Actual competitions
+      </Title2>
+      {loading ?
+        <img src={'/gifs/loading.gif'} style={{backgroundColor: 'white', display: "block", margin: '0 auto'}}/> :
+        error ? <h2>Ууу, ошибка! {error.message}</h2> :
+          <CompetitionList competitions={competitions}/>
+      }
 
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Competitions;

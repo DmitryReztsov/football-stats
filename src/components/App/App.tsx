@@ -8,9 +8,9 @@ import styled from "styled-components";
 import CompetitionPage from "../pages/CompetitionPage/CompetitionPage";
 
 const StyledApp = styled.div`
-    background-color: ${({theme}) => theme.colors.white};
-    flex: 1 1 auto;
-    display: flex;
+  background-color: ${({theme}) => theme.colors.white};
+  flex: 1 1 auto;
+  display: flex;
 `
 
 function App() {
