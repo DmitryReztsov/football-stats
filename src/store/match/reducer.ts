@@ -1,6 +1,7 @@
 import {IMatchState, MatchAction, MatchActionTypes} from "./types";
 
 const initialState = {
+  competition: null,
   matches: [],
   loading: false,
   error: null,
@@ -12,10 +13,10 @@ export function matchReducer(state: IMatchState = initialState, action: MatchAct
       return {...state, loading: true, error: null}
     }
     case MatchActionTypes.FETCH_MATCHES_SUCCESS: {
-      return {...state, loading: false, competitions: action.payload}
+      return {...state, loading: false, competition: action.payload.competition,  matches: action.payload.matches}
     }
     case MatchActionTypes.FETCH_MATCHES_ERROR: {
-      return {competitions: [], loading: false, error: action.payload}
+      return {competition: null, matches: [],  loading: false, error: action.payload}
     }
     default : {
       return state

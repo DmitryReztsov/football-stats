@@ -1,34 +1,36 @@
 import {Dispatch} from "redux";
 import axios from "axios";
 import {getUrl, URLS} from "../../utils/urls";
-import {TIER, TOKEN} from "../../utils/settings";
+import {TOKEN} from "../../utils/settings";
 import {IMatch, MatchAction, MatchActionTypes} from "./types";
 
-export const fetchMatches = () => {
+export const fetchMatches = (id: string) => {
   return async (dispatch: Dispatch<MatchAction>) => {
     try {
       dispatch({type: MatchActionTypes.FETCH_MATCHES})
-      const response = await axios.get(getUrl(URLS.GET_COMPETITIONS), {
+      const response = await axios.get(getUrl(URLS.GET_MATCHES + id + '/matches'), {
         headers: {
           'X-Auth-Token': TOKEN,
         }
       })
-      const competitionArray = response.data.competitions;
-      const competitions: IMatch[] = [];
-      // for (let i = 0; i < competitionArray.length; i++) {
-      //   if (competitionArray[i].plan === TIER) {
-      //     competitions.push({
-      //       id: competitionArray[i].id,
-      //       name: competitionArray[i].name,
-      //       code: competitionArray[i].code,
-      //       startDate: competitionArray[i].startDate,
-      //       endDate: competitionArray[i].endDate,
-      //     })
-      //   }
-      // }
-      // setTimeout(() => {
-      //   dispatch({type: MatchActionTypes.FETCH_MATCHES_SUCCESS, payload: competitions})
-      // }, 500)
+      const competition = response.data.competition.name
+      const matchesArray = response.data.matches;
+
+      const matches: IMatch[] = [];
+      for (let i = 0; i < matchesArray.length; i++) {
+        matches.push({
+          id: matchesArray[i].id,
+          utcDate: matchesArray[i].utcDate,
+          status:  matchesArray[i].status,
+          stage:  matchesArray[i].stage,
+          homeTeam:  matchesArray[i].homeTeam.name,
+          awayTeam:  matchesArray[i].awayTeam.name,
+          score:  `${matchesArray[i].score.fullTime.homeTeam}` + ' : ' + `${matchesArray[i].score.fullTime.awayTeam}`,
+        })
+      }
+      setTimeout(() => {
+        dispatch({type: MatchActionTypes.FETCH_MATCHES_SUCCESS, payload: {competition, matches}})
+      }, 500)
 
     } catch (e) {
       if (e instanceof Error) {

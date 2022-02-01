@@ -9,6 +9,7 @@ export interface IMatch {
 }
 
 export interface IMatchState {
+  competition : string | null,
   matches: IMatch [] | [],
   loading: boolean,
   error: Error | null,
@@ -26,7 +27,7 @@ export interface FetchMatchAction {
 
 export interface FetchMatchSuccessAction {
   type: MatchActionTypes.FETCH_MATCHES_SUCCESS,
-  payload: IMatch []
+  payload: {competition: string, matches: IMatch []}
 }
 
 export interface FetchMatchErrorAction {
