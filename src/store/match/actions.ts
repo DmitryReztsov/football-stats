@@ -13,7 +13,6 @@ export const fetchMatches = (id: string) => {
           'X-Auth-Token': TOKEN,
         }
       })
-      const competition = response.data.competition.name
       const matchesArray = response.data.matches;
 
       const matches: IMatch[] = [];
@@ -29,7 +28,7 @@ export const fetchMatches = (id: string) => {
         })
       }
       setTimeout(() => {
-        dispatch({type: MatchActionTypes.FETCH_MATCHES_SUCCESS, payload: {competition, matches}})
+        dispatch({type: MatchActionTypes.FETCH_MATCHES_SUCCESS, payload: matches})
       }, 500)
 
     } catch (e) {

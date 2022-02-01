@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
 import {ICompetition} from "../../../store/competition/types";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 const StyledCompetitionList = styled.div`
   display: flex;
@@ -48,6 +48,8 @@ interface ICompetitionList {
 
 const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
 
+  const location = useLocation();
+
   return (
     <StyledCompetitionList>
       {competitions.map((comp) => {
@@ -55,6 +57,7 @@ const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
           <StyledCompetitionCard
             key={comp.id}
             to={`/competitions/${comp.id}`}
+            state={{name: comp.name}}
           >
             <div style={{background: `url(/assets/${comp.code}.png) center no-repeat`, backgroundSize: 'contain'}}/>
             <p>{comp.name}</p>
