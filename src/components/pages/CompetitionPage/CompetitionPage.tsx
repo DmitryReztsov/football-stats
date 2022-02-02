@@ -34,9 +34,11 @@ const CompetitionPage: FC = () => {
       {loading ?
         <img src={'/gifs/loading.gif'} style={{backgroundColor: 'white', display: "block", margin: '0 auto'}}/> :
         error ? <h2>Ууу, ошибка! {error.message}</h2> :
-          <MatchList matches={matches} count={count}/>
+          <div>
+            <MatchList matches={matches} count={count}/>
+            <button onClick={() => setCount(state => state + 30)}>Show more</button>
+          </div>
       }
-      <button onClick={() => setCount(state => state + 30)}>Show more</button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
 
-const StyledSearchbar = styled.div`
+const StyledSearchbar = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;

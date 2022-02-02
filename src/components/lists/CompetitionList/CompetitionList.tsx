@@ -67,7 +67,3 @@ const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
 };
 
 export default CompetitionList;
-
-function useNavigate() {
-    throw new Error('Function not implemented.');
-}

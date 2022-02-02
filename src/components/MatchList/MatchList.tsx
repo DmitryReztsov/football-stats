@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
 import {IMatch} from "../../store/match/types";
+import { formatDate } from '../../utils/common';
 
 const StyledMatchList = styled.table`
   width: 100%;
@@ -34,7 +35,7 @@ const MatchList: FC<IMatchListProps> = ({matches, count}) => {
       {matches.map((match,index) => {
         if (index < count - 1) {
           return <tr key={match.id}>
-            <td>{match.utcDate}</td>
+            <td>{formatDate(match.utcDate)}</td>
             <td>{match.stage}</td>
             <td>{match.status}</td>
             <td>{match.homeTeam}</td>
