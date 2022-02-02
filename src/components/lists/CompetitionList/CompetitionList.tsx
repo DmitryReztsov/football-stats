@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
 import {ICompetition} from "../../../store/competition/types";
-import {Link, LinkProps, NavLinkProps} from "react-router-dom";
+import {Link, LinkProps} from "react-router-dom";
 
 interface ICompetitionList {
   competitions: ICompetition []
@@ -33,7 +33,7 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
   
   
   &:hover {
-    box-shadow: 0 2px 10px 3px #cacaca;
+    box-shadow: 0 6px 10px 3px #cacaca;
     transition: 0.2s all;
   }
   

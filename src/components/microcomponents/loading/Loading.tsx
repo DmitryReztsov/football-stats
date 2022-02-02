@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 const StyledImg = styled.img`
-  backgroundColor: white; 
+  backgroundColor: ${({theme}) => theme.colors.white}; 
   display: block;
   margin: 0 auto;
 `

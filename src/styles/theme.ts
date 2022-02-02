@@ -1,12 +1,11 @@
-import {ILightTheme} from "../interfaces/styled";
+import {ITheme} from "../interfaces/styled";
 
-export const lightTheme: ILightTheme = {
+export const baseTheme: ITheme = {
   colors: {
     dark_green: '#186049',
     middle_green: '#247158',
     light_green: '#6ab29b',
     light_brown: '#e4d5c7',
-    bg: '#ffffff',
     white: '#ffffff',
     black: '#19191B',
   },

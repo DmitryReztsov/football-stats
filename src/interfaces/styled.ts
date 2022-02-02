@@ -1,10 +1,10 @@
-export interface ILightTheme {
+
+export interface ITheme {
   colors: {
     dark_green: string,
     middle_green: string,
     light_green: string,
     light_brown: string,
-    bg: string,
     white: string,
     black: string,
   }

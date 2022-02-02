@@ -10,6 +10,11 @@ const StyledMatchList = styled.table`
   td,th {
     border: 1px solid gray;
   }
+  
+  tfoot {
+    td {
+    }
+  }
 `
 
 interface IMatchListProps {
@@ -33,7 +38,7 @@ const MatchList: FC<IMatchListProps> = ({matches, count}) => {
       </thead>
       <tbody>
       {matches.map((match,index) => {
-        if (index < count - 1) {
+        if (index <= count - 1) {
           return <tr key={match.id}>
             <td>{formatDate(match.utcDate)}</td>
             <td>{match.stage}</td>
@@ -47,7 +52,7 @@ const MatchList: FC<IMatchListProps> = ({matches, count}) => {
       </tbody>
       <tfoot>
       <tr>
-        <td>Matches: {matches.length}</td>
+        <td colSpan={6}>Matches: {matches.length}</td>
       </tr>
       </tfoot>
     </StyledMatchList>
