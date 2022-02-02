@@ -4,11 +4,12 @@ import {getUrl, URLS} from "../../utils/urls";
 import {TOKEN} from "../../utils/settings";
 import {IMatch, MatchAction, MatchActionTypes} from "./types";
 
-export const fetchMatches = (id: string) => {
+export const fetchMatches = (id: string, params: string = '') => {
   return async (dispatch: Dispatch<MatchAction>) => {
     try {
       dispatch({type: MatchActionTypes.FETCH_MATCHES})
-      const response = await axios.get(getUrl(URLS.GET_MATCHES + id + '/matches'), {
+      const url = getUrl(URLS.GET_MATCHES + id + '/matches' + '/?' + params)
+      const response = await axios.get(url, {
         headers: {
           'X-Auth-Token': TOKEN,
         }

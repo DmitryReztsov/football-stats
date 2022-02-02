@@ -1,9 +1,13 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import styled from "styled-components";
 import Button from "../microcomponents/form/Button";
 import Select from "../microcomponents/form/Select";
 import InputSearch from "../microcomponents/form/InputSearch";
 import InputDate from "../microcomponents/form/InputDate";
+import {useDispatch} from "react-redux";
+import {setYear} from "../../store/search/actions";
+import {useTypedSelector} from "../../store/selectors";
+import { useSearchParams } from 'react-router-dom';
 
 const StyledSearchbar = styled.form`
   display: flex;
@@ -16,13 +20,27 @@ const StyledSearchbar = styled.form`
 `
 
 const Searchbar: FC = () => {
+  const dispatch = useDispatch()
+  const [searchParams, setSearchParams] = useSearchParams();
+  const {year} = useTypedSelector(state => state.search)
+
+  const setYearHandler = (e: React.ChangeEvent<HTMLSelectElement>) : void => {
+    dispatch(setYear(e.currentTarget.value));
+    setSearchParams({season:e.currentTarget.value})
+  }
+
+  useEffect(()=> {
+    if (searchParams.has(year)) dispatch(setYear(searchParams.get(year)!));
+  },[])
+
   return (
     <StyledSearchbar>
       <span>From</span>
       <InputDate/>
       <span>To</span>
       <InputDate/>
-      <Select>
+      <Select value={year} setYear={setYearHandler}>
+        <option value="">Choose season</option>
         <option value="2022">2022</option>
         <option value="2021">2021</option>
         <option value="2020">2020</option>
@@ -32,7 +50,7 @@ const Searchbar: FC = () => {
         <option value="2016">2016</option>
         <option value="2015">2015</option>
       </Select>
-      <InputSearch/>
+      <InputSearch placeholder={'Искать команду'}/>
       <Button type="submit">Поиск</Button>
     </StyledSearchbar>
   );

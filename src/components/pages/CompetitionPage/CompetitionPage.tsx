@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {Title2} from "../../microcomponents/titles/Titles";
 import Searchbar from "../../Searchbar/Searchbar";
 import MatchList from "../../MatchList/MatchList";
-import {useLocation, useParams } from 'react-router-dom';
+import {useLocation, useParams, useSearchParams } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {fetchMatches} from "../../../store/match/actions";
 import {useTypedSelector} from "../../../store/selectors";
@@ -23,16 +23,23 @@ const StyledCompetitionPage = styled.div`
 
 const CompetitionPage: FC = () => {
   const dispatch = useDispatch()
+  const [searchParams, setSearchParams] = useSearchParams();
   const {id} = useParams()
   const {matches, loading, error} = useTypedSelector(state => state.matches)
+  // const {year, substr} = useTypedSelector(state => state.search)
   const [count, setCount] = useState<number>(30)
 
   const location = useLocation();
-  const state = location.state as {name: string};
-  const name = state.name;
+  let state = location.state as {name: string, defaultParams: string}
+  || {name: localStorage.getItem('name'),defaultParams: 'season=2021'};
+  let name = state.name
 
   useEffect(() => {
-    dispatch(fetchMatches(id!))
+    dispatch(fetchMatches(id!,searchParams.toString() || state.defaultParams))
+  },[searchParams])
+
+  useEffect(() => {
+    localStorage.setItem('name', name)
   },[])
 
   return (
@@ -46,7 +53,7 @@ const CompetitionPage: FC = () => {
         error ? <h2>Ууу, ошибка! {error.message}</h2> :
           <div>
             <MatchList matches={matches} count={count}/>
-            <Button onClick={() => setCount(state => state + 30)}>Show more</Button>
+            <Button getMore={() => setCount(state => state + 30)}>Show more</Button>
           </div>
       }
     </StyledCompetitionPage>

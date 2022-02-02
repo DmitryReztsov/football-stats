@@ -7,9 +7,15 @@ const StyledSelect = styled.select`
   
 `
 
-const Select: FC = ({children}) => {
+interface ISelectProps {
+  children: React.ReactNode,
+  setYear?: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+  value: string
+}
+
+const Select: FC<ISelectProps> = ({children,setYear,value}) => {
   return (
-    <StyledSelect>
+    <StyledSelect onChange={setYear} value={value}>
       {children}
     </StyledSelect>
   );

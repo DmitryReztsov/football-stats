@@ -8,13 +8,13 @@ const StyledButton = styled.button`
 
 interface IButtonProps {
   children?: string,
-  onClick?: () => void,
+  getMore?: () => void,
   type?: string
 }
 
-const Button: FC<IButtonProps> = ({children,onClick}) => {
+const Button: FC<IButtonProps> = ({children,getMore}) => {
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton onClick={getMore}>
       {children}
     </StyledButton>
   );
