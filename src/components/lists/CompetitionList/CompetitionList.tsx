@@ -48,8 +48,6 @@ interface ICompetitionList {
 
 const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
 
-  const location = useLocation();
-
   return (
     <StyledCompetitionList>
       {competitions.map((comp) => {
