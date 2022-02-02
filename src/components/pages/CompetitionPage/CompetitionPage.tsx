@@ -26,9 +26,10 @@ const CompetitionPage: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const {id} = useParams()
   const {matches, loading, error} = useTypedSelector(state => state.matches)
-  // const {year, substr} = useTypedSelector(state => state.search)
   const [count, setCount] = useState<number>(30)
 
+  // Конструкция с LocalStorage нужна для хранения данных, которые мы
+  // забираем после ссылки 
   const location = useLocation();
   let state = location.state as {name: string, defaultParams: string}
   || {name: localStorage.getItem('name'),defaultParams: 'season=2021'};
