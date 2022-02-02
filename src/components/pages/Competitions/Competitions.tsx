@@ -4,6 +4,7 @@ import {fetchCompetition} from "../../../store/competition/actions";
 import {useDispatch} from "react-redux";
 import {Title2} from "../../microcomponents/titles/Titles";
 import CompetitionList from "../../lists/CompetitionList/CompetitionList";
+import Loading from "../../microcomponents/loading/Loading";
 
 const Competitions: FC = () => {
   const {competitions, loading, error} = useTypedSelector(state => state.competition)
@@ -20,7 +21,7 @@ const Competitions: FC = () => {
         Actual competitions
       </Title2>
       {loading ?
-        <img src={'/gifs/loading.gif'} style={{backgroundColor: 'white', display: "block", margin: '0 auto'}}/> :
+        <Loading/> :
         error ? <h2>Ууу, ошибка! {error.message}</h2> :
           <CompetitionList competitions={competitions}/>
       }

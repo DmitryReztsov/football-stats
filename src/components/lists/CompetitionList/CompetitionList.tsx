@@ -1,7 +1,11 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
 import {ICompetition} from "../../../store/competition/types";
-import {Link, useLocation} from "react-router-dom";
+import {Link, LinkProps, NavLinkProps} from "react-router-dom";
+
+interface ICompetitionList {
+  competitions: ICompetition []
+}
 
 const StyledCompetitionList = styled.div`
   display: flex;
@@ -10,8 +14,11 @@ const StyledCompetitionList = styled.div`
   margin: 2rem;
 `
 
+interface ICompetitionCardProps extends LinkProps {
+  code: string,
+}
 
-const StyledCompetitionCard = styled(Link)`
+const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
   flex: 0 1 22%;
   padding: 5px;
   margin: 5px;
@@ -24,6 +31,7 @@ const StyledCompetitionCard = styled(Link)`
   transition: 0.5s all;
   color: ${({theme}) => theme.colors.black};
   
+  
   &:hover {
     box-shadow: 0 2px 10px 3px #cacaca;
     transition: 0.2s all;
@@ -34,6 +42,8 @@ const StyledCompetitionCard = styled(Link)`
     padding: 0.5rem;
     width: 10rem;
     height: 10rem;
+    background:${({code}) => `url('/assets/${code}.png') center no-repeat`};
+    background-size: contain;
   }
   & p {
     text-align: center;
@@ -41,10 +51,6 @@ const StyledCompetitionCard = styled(Link)`
     font-size: 1.5rem;
   }
 `
-
-interface ICompetitionList {
-  competitions: ICompetition []
-}
 
 const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
 
@@ -56,8 +62,9 @@ const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
             key={comp.id}
             to={`/competitions/${comp.id}`}
             state={{name: comp.name}}
+            code={comp.code}
           >
-            <div style={{background: `url(/assets/${comp.code}.png) center no-repeat`, backgroundSize: 'contain'}}/>
+            <div/>
             <p>{comp.name}</p>
           </StyledCompetitionCard>
         )

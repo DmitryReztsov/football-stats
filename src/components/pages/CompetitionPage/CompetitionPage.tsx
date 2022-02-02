@@ -7,6 +7,7 @@ import {useLocation, useParams } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {fetchMatches} from "../../../store/match/actions";
 import {useTypedSelector} from "../../../store/selectors";
+import Loading from "../../microcomponents/loading/Loading";
 
 
 //const StyledCompetitionPage = styled.div``
@@ -32,7 +33,7 @@ const CompetitionPage: FC = () => {
       </Title2>
       <Searchbar/>
       {loading ?
-        <img src={'/gifs/loading.gif'} style={{backgroundColor: 'white', display: "block", margin: '0 auto'}}/> :
+        <Loading/> :
         error ? <h2>Ууу, ошибка! {error.message}</h2> :
           <div>
             <MatchList matches={matches} count={count}/>
