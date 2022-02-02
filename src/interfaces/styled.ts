@@ -5,6 +5,7 @@ export interface ITheme {
     middle_green: string,
     light_green: string,
     light_brown: string,
+    light_gray: string,
     white: string,
     black: string,
   }

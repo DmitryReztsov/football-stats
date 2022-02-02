@@ -1,5 +1,4 @@
 import React, {FC, useEffect, useState} from 'react';
-import styled from "styled-components";
 import {Title2} from "../../microcomponents/titles/Titles";
 import Searchbar from "../../Searchbar/Searchbar";
 import MatchList from "../../MatchList/MatchList";
@@ -8,9 +7,19 @@ import {useDispatch} from "react-redux";
 import {fetchMatches} from "../../../store/match/actions";
 import {useTypedSelector} from "../../../store/selectors";
 import Loading from "../../microcomponents/loading/Loading";
+import Button from "../../microcomponents/form/Button";
+import styled from "styled-components";
 
 
-//const StyledCompetitionPage = styled.div``
+const StyledCompetitionPage = styled.div`
+  & > div {
+    margin-top: 1rem;
+  }
+  & > Button {
+    display: block;
+    margin: 0 auto;
+  }
+`
 
 const CompetitionPage: FC = () => {
   const dispatch = useDispatch()
@@ -27,7 +36,7 @@ const CompetitionPage: FC = () => {
   },[])
 
   return (
-    <div>
+    <StyledCompetitionPage>
       <Title2 centered>
         {name} schedule
       </Title2>
@@ -37,10 +46,10 @@ const CompetitionPage: FC = () => {
         error ? <h2>Ууу, ошибка! {error.message}</h2> :
           <div>
             <MatchList matches={matches} count={count}/>
-            <button onClick={() => setCount(state => state + 30)}>Show more</button>
+            <Button onClick={() => setCount(state => state + 30)}>Show more</Button>
           </div>
       }
-    </div>
+    </StyledCompetitionPage>
   );
 };
 

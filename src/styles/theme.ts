@@ -6,6 +6,7 @@ export const baseTheme: ITheme = {
     middle_green: '#247158',
     light_green: '#6ab29b',
     light_brown: '#e4d5c7',
+    light_gray: '#eaeaea',
     white: '#ffffff',
     black: '#19191B',
   },
@@ -16,6 +17,5 @@ export const baseTheme: ITheme = {
     medium: '(max-width: 720px)',
     small: '(max-width: 540px)',
   },
-
 }
 

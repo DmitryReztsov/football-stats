@@ -6,14 +6,37 @@ import { formatDate } from '../../utils/common';
 const StyledMatchList = styled.table`
   width: 100%;
   text-align: center;
+  border-collapse: collapse;
+  font-size: 1.2rem;
   
-  td,th {
-    border: 1px solid gray;
+  thead {
+    background-color: ${({theme}) => theme.colors.middle_green};
+    
+    th {
+      padding: 0.5rem;
+      color: ${({theme}) => theme.colors.white};
+      line-height: 1.5;
+    }
+  }
+  
+  tbody {
+    td {
+      padding: 0.5rem;
+      line-height: 1.5;
+      border-bottom: 1px dotted ${({theme}) => theme.colors.middle_green};
+      border-right: 1px solid ${({theme}) => theme.colors.white};
+      border-left: 1px solid ${({theme}) => theme.colors.white};
+    }
   }
   
   tfoot {
     td {
+      padding: 0.5rem;
+      line-height: 1.5;
     }
+  }
+  
+  tr {
   }
 `
 
@@ -27,33 +50,34 @@ const MatchList: FC<IMatchListProps> = ({matches, count}) => {
   return (
     <StyledMatchList>
       <thead>
-      <tr>
-        <th>utcDate</th>
-        <th>stage</th>
-        <th>status</th>
-        <th>homeTeam</th>
-        <th>score</th>
-        <th>awayTeam</th>
-      </tr>
+        <tr>
+          <th>Date</th>
+          <th>Stage</th>
+          <th>Status</th>
+          <th>Home team</th>
+          <th>Score</th>
+          <th>Away team</th>
+        </tr>
       </thead>
       <tbody>
       {matches.map((match,index) => {
         if (index <= count - 1) {
-          return <tr key={match.id}>
+          return(
+          <tr key={match.id}>
             <td>{formatDate(match.utcDate)}</td>
             <td>{match.stage}</td>
             <td>{match.status}</td>
             <td>{match.homeTeam}</td>
             <td>{match.score}</td>
             <td>{match.awayTeam}</td>
-          </tr>
+          </tr>)
         }
       })}
       </tbody>
       <tfoot>
-      <tr>
-        <td colSpan={6}>Matches: {matches.length}</td>
-      </tr>
+        <tr>
+          <td colSpan={6}>Matches: {matches.length}</td>
+        </tr>
       </tfoot>
     </StyledMatchList>
   );
