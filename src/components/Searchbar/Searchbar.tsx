@@ -5,9 +5,10 @@ import Select from "../microcomponents/form/Select";
 import InputSearch from "../microcomponents/form/InputSearch";
 import InputDate from "../microcomponents/form/InputDate";
 import {useDispatch} from "react-redux";
-import {setSubstr, setSeason, setDateFrom, setDateTo} from "../../store/search/actions";
+import {setSubstr, setSeason, setDateFrom, setDateTo, setCompetition} from "../../store/search/actions";
 import {useTypedSelector} from "../../store/selectors";
-import { useSearchParams } from 'react-router-dom';
+import {useSearchParams} from 'react-router-dom';
+import {fetchCompetition} from "../../store/competition/actions";
 
 const StyledSearchbar = styled.div`
   display: flex;
@@ -19,18 +20,24 @@ const StyledSearchbar = styled.div`
   }
 `
 
-const Searchbar: FC = () => {
+interface ISearchBarProps {
+  noDate?: boolean,
+  noCompetition?: boolean,
+}
+
+const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition}) => {
   const dispatch = useDispatch()
   const [searchParams, setSearchParams] = useSearchParams();
-  const {season, substr, dateFrom, dateTo} = useTypedSelector(state => state.search)
+  const {season, substr, dateFrom, dateTo, competition} = useTypedSelector(state => state.search)
+  const {competitions} = useTypedSelector(state => state.competition)
 
-  const setSeasonHandler = (e: React.ChangeEvent<HTMLSelectElement>) : void => {
+  const setSeasonHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     dispatch(setSeason(e.currentTarget.value));
     searchParams.set('season', e.currentTarget.value)
     setSearchParams(searchParams);
   }
 
-  const setSubstrHandler = (e: React.ChangeEvent<HTMLInputElement>) : void => {
+  const setSubstrHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(setSubstr(e.currentTarget.value));
   }
 
@@ -46,25 +53,47 @@ const Searchbar: FC = () => {
     setSearchParams(searchParams);
   }
 
-  const submitHandler = () : void => {
+  const setCompetitionHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    dispatch(setCompetition(e.currentTarget.value));
+    searchParams.set('competition', e.currentTarget.value)
+    setSearchParams(searchParams);
+  }
+
+  const submitHandler = (): void => {
     searchParams.set('substr', substr)
     setSearchParams(searchParams);
   }
 
-  useEffect(()=> {
+  useEffect(() => {
+    dispatch(fetchCompetition())
     if (searchParams.has('season')) dispatch(setSeason(searchParams.get('season')!));
     if (searchParams.has('substr')) dispatch(setSubstr(searchParams.get('substr')!));
     if (searchParams.has('dateFrom')) dispatch(setDateFrom(searchParams.get('dateFrom')!));
     if (searchParams.has('dateTo')) dispatch(setDateTo(searchParams.get('dateTo')!));
-  },[])
+    if (searchParams.has('competition')) dispatch(setCompetition(searchParams.get('competition')!));
+  }, [])
 
   return (
     <StyledSearchbar>
-      <span>From</span>
-      <InputDate value={dateFrom} setDate={setDateFromHandler}/>
-      <span>To</span>
-      <InputDate value={dateTo} setDate={setDateToHandler}/>
-      <Select value={season} setSeason={setSeasonHandler}>
+      {noDate ?
+        null
+        : <>
+          <span>From</span>
+          <InputDate value={dateFrom} setDate={setDateFromHandler}/>
+          <span>To</span>
+          <InputDate value={dateTo} setDate={setDateToHandler}/>
+        </>
+      }
+      {noCompetition ?
+        null
+        :
+        <Select value={competition} change={setCompetitionHandler}>
+          {competitions.map((comp) => {
+            return <option key={comp.id} value={comp.id}>{comp.name}</option>
+          })}
+        </Select>
+      }
+      <Select value={season} change={setSeasonHandler}>
         <option value="">All time</option>
         <option value="2022">2022</option>
         <option value="2021">2021</option>

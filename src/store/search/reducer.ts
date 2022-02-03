@@ -5,12 +5,13 @@ const initialState = {
   substr: '',
   dateFrom: '',
   dateTo: '',
+  competition: '',
 }
 
 export function searchReducer(state: ISearchState = initialState, action: SearchAction) {
   switch (action.type) {
     case SearchActionTypes.SET_SEASON: {
-      return {...state, year: action.payload}
+      return {...state, season: action.payload}
     }
     case SearchActionTypes.SET_SUBSTR: {
       return {...state, substr: action.payload}
@@ -20,6 +21,9 @@ export function searchReducer(state: ISearchState = initialState, action: Search
     }
     case SearchActionTypes.SET_DATE_TO: {
       return {...state, dateTo: action.payload}
+    }
+    case SearchActionTypes.SET_COMPETITION: {
+      return {...state, competition: action.payload}
     }
     case SearchActionTypes.CLEAR_SEARCH: {
       return initialState

@@ -50,7 +50,6 @@ interface IMatchListProps {
 const MatchList: FC<IMatchListProps> = ({matches, count}) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const season = searchParams.get('season');
   const substr = searchParams.get('substr');
   const dateFrom = searchParams.get('dateFrom');
   const dateTo = searchParams.get('dateTo');

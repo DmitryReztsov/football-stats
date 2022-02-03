@@ -53,7 +53,7 @@ const CompetitionPage: FC = () => {
       <Title2 centered>
         {name} schedule
       </Title2>
-      <Searchbar/>
+      <Searchbar noCompetition/>
       {loading ?
         <Loading/> :
         error ? <h2>Ууу, ошибка! {error.message}</h2> :

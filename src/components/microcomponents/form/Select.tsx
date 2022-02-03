@@ -8,13 +8,13 @@ const StyledSelect = styled.select`
 
 interface ISelectProps {
   children: React.ReactNode,
-  setSeason?: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+  change?: (e: React.ChangeEvent<HTMLSelectElement>) => void,
   value: string
 }
 
-const Select: FC<ISelectProps> = ({children,setSeason,value}) => {
+const Select: FC<ISelectProps> = ({children,change,value}) => {
   return (
-    <StyledSelect value={value} onChange={setSeason} >
+    <StyledSelect value={value} onChange={change} >
       {children}
     </StyledSelect>
   );

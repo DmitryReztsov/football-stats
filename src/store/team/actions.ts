@@ -4,11 +4,11 @@ import {getUrl, URLS} from "../../utils/urls";
 import {TIER, TOKEN} from "../../utils/settings";
 import {ITeam, TeamAction, TeamActionTypes} from "./types";
 
-export const fetchTeam = (id: string) => {
+export const fetchTeam = (id: string, season: string | null) => {
   return async (dispatch: Dispatch<TeamAction>) => {
     try {
       dispatch({type: TeamActionTypes.FETCH_TEAM})
-      const response = await axios.get(getUrl(URLS.GET_TEAMS + id + '/teams'), {
+      const response = await axios.get(getUrl(URLS.GET_TEAMS + id + '/teams' + (season ? '?season=' + season : '')), {
         headers: {
           'X-Auth-Token': TOKEN,
         }
