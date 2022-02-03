@@ -25,7 +25,6 @@ const Competitions: FC = () => {
         error ? <h2>Ууу, ошибка! {error.message}</h2> :
           <CompetitionList competitions={competitions}/>
       }
-
     </div>
   );
 };
