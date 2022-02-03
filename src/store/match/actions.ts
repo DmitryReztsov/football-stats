@@ -8,7 +8,7 @@ export const fetchMatches = (id: string, params: string = '') => {
   return async (dispatch: Dispatch<MatchAction>) => {
     try {
       dispatch({type: MatchActionTypes.FETCH_MATCHES})
-      const url = getUrl(URLS.GET_MATCHES + id + '/matches' + '/?' + params)
+      const url = getUrl(URLS.GET_MATCHES + id + '/matches' + '?' + params)
       const response = await axios.get(url, {
         headers: {
           'X-Auth-Token': TOKEN,

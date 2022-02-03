@@ -14,9 +14,8 @@ interface ISelectProps {
 }
 
 const Select: FC<ISelectProps> = ({children,setYear,value}) => {
-  const [searchParams, setSearchParams] = useSearchParams();
   return (
-    <StyledSelect onChange={setYear} value={searchParams.get('season') || value}>
+    <StyledSelect value={value} onChange={setYear} >
       {children}
     </StyledSelect>
   );

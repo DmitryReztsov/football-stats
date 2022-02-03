@@ -7,6 +7,7 @@ const StyledInput = styled.input`
   border: 1px solid transparent;
   background-color: ${({theme}) => theme.colors.white};
   box-shadow: 0px 0px 2px 2px ${({theme}) => theme.colors.light_gray} inset;
+  color: ${({theme}) => theme.colors.dark_green};
   
   &:hover,focus {
     border: 1px solid ${({theme}) => theme.colors.dark_green};
@@ -18,14 +19,14 @@ const StyledInput = styled.input`
 `
 
 interface IInputSearchProps {
-  children?: string,
+  value?: string,
   placeholder?: string,
-  onClick?: () => void
+  getSubstr?: (e:React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const InputSearch: FC<IInputSearchProps> = ({children,placeholder}) => {
+const InputSearch: FC<IInputSearchProps> = ({children,placeholder,getSubstr,value}) => {
   return (
-    <StyledInput type={'search'} placeholder={placeholder}>
+    <StyledInput placeholder={placeholder} value={value} onChange={getSubstr}>
       {children}
     </StyledInput>
   );

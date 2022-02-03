@@ -5,11 +5,11 @@ import Select from "../microcomponents/form/Select";
 import InputSearch from "../microcomponents/form/InputSearch";
 import InputDate from "../microcomponents/form/InputDate";
 import {useDispatch} from "react-redux";
-import {setYear} from "../../store/search/actions";
+import {setSubstr, setYear} from "../../store/search/actions";
 import {useTypedSelector} from "../../store/selectors";
 import { useSearchParams } from 'react-router-dom';
 
-const StyledSearchbar = styled.form`
+const StyledSearchbar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,15 +22,25 @@ const StyledSearchbar = styled.form`
 const Searchbar: FC = () => {
   const dispatch = useDispatch()
   const [searchParams, setSearchParams] = useSearchParams();
-  const {year} = useTypedSelector(state => state.search)
-
+  const {year, substr} = useTypedSelector(state => state.search)
   const setYearHandler = (e: React.ChangeEvent<HTMLSelectElement>) : void => {
     dispatch(setYear(e.currentTarget.value));
-    setSearchParams({season:e.currentTarget.value})
+    searchParams.set('season', e.currentTarget.value)
+    setSearchParams(searchParams);
+  }
+
+  const setSubstrHandler = (e: React.ChangeEvent<HTMLInputElement>) : void => {
+    dispatch(setSubstr(e.currentTarget.value));
+  }
+
+  const submitHandler = (e: React.MouseEvent<HTMLButtonElement>) : void => {
+    searchParams.set('substr', substr)
+    setSearchParams(searchParams);
   }
 
   useEffect(()=> {
-    if (searchParams.has(year)) dispatch(setYear(searchParams.get(year)!));
+    if (searchParams.has('season')) dispatch(setYear(searchParams.get('season')!));
+    if (searchParams.has('substr')) dispatch(setSubstr(searchParams.get('substr')!));
   },[])
 
   return (
@@ -40,7 +50,7 @@ const Searchbar: FC = () => {
       <span>To</span>
       <InputDate/>
       <Select value={year} setYear={setYearHandler}>
-        <option value="">Choose season</option>
+        <option value="">All time</option>
         <option value="2022">2022</option>
         <option value="2021">2021</option>
         <option value="2020">2020</option>
@@ -50,8 +60,8 @@ const Searchbar: FC = () => {
         <option value="2016">2016</option>
         <option value="2015">2015</option>
       </Select>
-      <InputSearch placeholder={'Искать команду'}/>
-      <Button type="submit">Поиск</Button>
+      <InputSearch placeholder={'Искать команду'} value={substr} getSubstr={setSubstrHandler}/>
+      <Button click={submitHandler}>Поиск</Button>
     </StyledSearchbar>
   );
 };

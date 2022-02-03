@@ -31,12 +31,12 @@ const CompetitionPage: FC = () => {
   // Конструкция с LocalStorage нужна для хранения данных, которые мы
   // забираем после ссылки 
   const location = useLocation();
-  let state = location.state as {name: string, defaultParams: string}
-  || {name: localStorage.getItem('name'),defaultParams: 'season=2021'};
+  let state = location.state as {name: string}
+  || {name: localStorage.getItem('name')};
   let name = state.name
 
   useEffect(() => {
-    dispatch(fetchMatches(id!,searchParams.toString() || state.defaultParams))
+    dispatch(fetchMatches(id!,searchParams.toString()))
   },[searchParams])
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const CompetitionPage: FC = () => {
         error ? <h2>Ууу, ошибка! {error.message}</h2> :
           <div>
             <MatchList matches={matches} count={count}/>
-            <Button getMore={() => setCount(state => state + 30)}>Show more</Button>
+            <Button click={() => setCount(state => state + 30)}>Show more</Button>
           </div>
       }
     </StyledCompetitionPage>

@@ -1,7 +1,8 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import styled from "styled-components";
 import {IMatch} from "../../store/match/types";
 import { formatDate } from '../../utils/common';
+import {useSearchParams} from "react-router-dom";
 
 const StyledMatchList = styled.table`
   width: 100%;
@@ -46,6 +47,8 @@ interface IMatchListProps {
 }
 
 const MatchList: FC<IMatchListProps> = ({matches, count}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const substr: string  = (searchParams.get('substr') || '').toLowerCase()
 
   return (
     <StyledMatchList>
@@ -60,7 +63,9 @@ const MatchList: FC<IMatchListProps> = ({matches, count}) => {
         </tr>
       </thead>
       <tbody>
-      {matches.map((match,index) => {
+      {matches
+        .filter((match) => match.homeTeam.toLowerCase().includes(substr) || match.awayTeam.toLowerCase().includes(substr))
+        .map((match,index) => {
         if (index <= count - 1) {
           return(
           <tr key={match.id}>
