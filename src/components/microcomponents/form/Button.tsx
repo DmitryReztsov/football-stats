@@ -8,7 +8,7 @@ const StyledButton = styled.button`
 
 interface IButtonProps {
   children?: string,
-  click?: (e:React.MouseEvent<HTMLButtonElement>) => void,
+  click?: () => void,
   type?: string
 }
 

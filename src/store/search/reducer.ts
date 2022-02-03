@@ -1,7 +1,7 @@
 import {ISearchState, SearchAction, SearchActionTypes} from "./types";
 
 const initialState = {
-  year: '',
+  season: '',
   substr: '',
   dateFrom: '',
   dateTo: '',
@@ -9,7 +9,7 @@ const initialState = {
 
 export function searchReducer(state: ISearchState = initialState, action: SearchAction) {
   switch (action.type) {
-    case SearchActionTypes.SET_YEAR: {
+    case SearchActionTypes.SET_SEASON: {
       return {...state, year: action.payload}
     }
     case SearchActionTypes.SET_SUBSTR: {

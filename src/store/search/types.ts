@@ -1,11 +1,11 @@
 export interface ISearchState {
-  year: string
+  season: string
   substr: string,
   dateFrom: string,
   dateTo: string,
 }
 export enum SearchActionTypes  {
-    SET_YEAR = 'SET_YEAR',
+    SET_SEASON = 'SET_SEASON',
     SET_SUBSTR = 'SET_SUBSTR',
     SET_DATE_FROM = 'SET_DATE_FROM',
     SET_DATE_TO = 'SET_DATE_TO',
@@ -14,7 +14,7 @@ export enum SearchActionTypes  {
 
 
 export interface YearSearchAction {
-  type: SearchActionTypes.SET_YEAR,
+  type: SearchActionTypes.SET_SEASON,
   payload: string,
 }
 

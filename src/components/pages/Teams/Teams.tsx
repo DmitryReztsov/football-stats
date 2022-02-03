@@ -5,6 +5,7 @@ import {useTypedSelector} from "../../../store/selectors";
 import {useDispatch} from "react-redux";
 import {fetchTeam} from "../../../store/team/actions";
 import TeamList from "../../lists/TeamList/TeamList";
+import Searchbar from "../../Searchbar/Searchbar";
 
 const Teams: FC = () => {
 
@@ -20,6 +21,7 @@ const Teams: FC = () => {
       <Title2 centered>
         Actual teams
       </Title2>
+      <Searchbar/>
       {loading ?
         <Loading/> :
         error ? <h2>Ууу, ошибка! {error.message}</h2> :

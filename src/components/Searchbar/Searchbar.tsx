@@ -5,7 +5,7 @@ import Select from "../microcomponents/form/Select";
 import InputSearch from "../microcomponents/form/InputSearch";
 import InputDate from "../microcomponents/form/InputDate";
 import {useDispatch} from "react-redux";
-import {setSubstr, setYear, setDateFrom, setDateTo} from "../../store/search/actions";
+import {setSubstr, setSeason, setDateFrom, setDateTo} from "../../store/search/actions";
 import {useTypedSelector} from "../../store/selectors";
 import { useSearchParams } from 'react-router-dom';
 
@@ -22,10 +22,10 @@ const StyledSearchbar = styled.div`
 const Searchbar: FC = () => {
   const dispatch = useDispatch()
   const [searchParams, setSearchParams] = useSearchParams();
-  const {year, substr, dateFrom, dateTo} = useTypedSelector(state => state.search)
+  const {season, substr, dateFrom, dateTo} = useTypedSelector(state => state.search)
 
-  const setYearHandler = (e: React.ChangeEvent<HTMLSelectElement>) : void => {
-    dispatch(setYear(e.currentTarget.value));
+  const setSeasonHandler = (e: React.ChangeEvent<HTMLSelectElement>) : void => {
+    dispatch(setSeason(e.currentTarget.value));
     searchParams.set('season', e.currentTarget.value)
     setSearchParams(searchParams);
   }
@@ -46,13 +46,13 @@ const Searchbar: FC = () => {
     setSearchParams(searchParams);
   }
 
-  const submitHandler = (e: React.MouseEvent<HTMLButtonElement>) : void => {
+  const submitHandler = () : void => {
     searchParams.set('substr', substr)
     setSearchParams(searchParams);
   }
 
   useEffect(()=> {
-    if (searchParams.has('season')) dispatch(setYear(searchParams.get('season')!));
+    if (searchParams.has('season')) dispatch(setSeason(searchParams.get('season')!));
     if (searchParams.has('substr')) dispatch(setSubstr(searchParams.get('substr')!));
     if (searchParams.has('dateFrom')) dispatch(setDateFrom(searchParams.get('dateFrom')!));
     if (searchParams.has('dateTo')) dispatch(setDateTo(searchParams.get('dateTo')!));
@@ -64,7 +64,7 @@ const Searchbar: FC = () => {
       <InputDate value={dateFrom} setDate={setDateFromHandler}/>
       <span>To</span>
       <InputDate value={dateTo} setDate={setDateToHandler}/>
-      <Select value={year} setYear={setYearHandler}>
+      <Select value={season} setSeason={setSeasonHandler}>
         <option value="">All time</option>
         <option value="2022">2022</option>
         <option value="2021">2021</option>

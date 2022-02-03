@@ -1,7 +1,7 @@
 import {SearchActionTypes} from "./types";
 
-export const setYear = (year: string) => {
-  return {type: SearchActionTypes.SET_YEAR, payload: year}
+export const setSeason = (year: string) => {
+  return {type: SearchActionTypes.SET_SEASON, payload: year}
 }
 
 export const setSubstr = (substr: string) => {
