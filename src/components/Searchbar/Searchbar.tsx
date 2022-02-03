@@ -5,7 +5,7 @@ import Select from "../microcomponents/form/Select";
 import InputSearch from "../microcomponents/form/InputSearch";
 import InputDate from "../microcomponents/form/InputDate";
 import {useDispatch} from "react-redux";
-import {setSubstr, setYear} from "../../store/search/actions";
+import {setSubstr, setYear, setDateFrom, setDateTo} from "../../store/search/actions";
 import {useTypedSelector} from "../../store/selectors";
 import { useSearchParams } from 'react-router-dom';
 
@@ -22,7 +22,8 @@ const StyledSearchbar = styled.div`
 const Searchbar: FC = () => {
   const dispatch = useDispatch()
   const [searchParams, setSearchParams] = useSearchParams();
-  const {year, substr} = useTypedSelector(state => state.search)
+  const {year, substr, dateFrom, dateTo} = useTypedSelector(state => state.search)
+
   const setYearHandler = (e: React.ChangeEvent<HTMLSelectElement>) : void => {
     dispatch(setYear(e.currentTarget.value));
     searchParams.set('season', e.currentTarget.value)
@@ -33,6 +34,18 @@ const Searchbar: FC = () => {
     dispatch(setSubstr(e.currentTarget.value));
   }
 
+  const setDateFromHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    dispatch(setDateFrom(e.currentTarget.value));
+    searchParams.set('dateFrom', e.currentTarget.value)
+    setSearchParams(searchParams);
+  }
+
+  const setDateToHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    dispatch(setDateTo(e.currentTarget.value));
+    searchParams.set('dateTo', e.currentTarget.value)
+    setSearchParams(searchParams);
+  }
+
   const submitHandler = (e: React.MouseEvent<HTMLButtonElement>) : void => {
     searchParams.set('substr', substr)
     setSearchParams(searchParams);
@@ -41,14 +54,16 @@ const Searchbar: FC = () => {
   useEffect(()=> {
     if (searchParams.has('season')) dispatch(setYear(searchParams.get('season')!));
     if (searchParams.has('substr')) dispatch(setSubstr(searchParams.get('substr')!));
+    if (searchParams.has('dateFrom')) dispatch(setDateFrom(searchParams.get('dateFrom')!));
+    if (searchParams.has('dateTo')) dispatch(setDateTo(searchParams.get('dateTo')!));
   },[])
 
   return (
     <StyledSearchbar>
       <span>From</span>
-      <InputDate/>
+      <InputDate value={dateFrom} setDate={setDateFromHandler}/>
       <span>To</span>
-      <InputDate/>
+      <InputDate value={dateTo} setDate={setDateToHandler}/>
       <Select value={year} setYear={setYearHandler}>
         <option value="">All time</option>
         <option value="2022">2022</option>
@@ -60,7 +75,7 @@ const Searchbar: FC = () => {
         <option value="2016">2016</option>
         <option value="2015">2015</option>
       </Select>
-      <InputSearch placeholder={'Искать команду'} value={substr} getSubstr={setSubstrHandler}/>
+      <InputSearch placeholder={'Искать команду'} value={substr} setSubstr={setSubstrHandler}/>
       <Button click={submitHandler}>Поиск</Button>
     </StyledSearchbar>
   );

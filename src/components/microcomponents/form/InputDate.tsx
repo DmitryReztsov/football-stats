@@ -18,11 +18,13 @@ const StyledInputDate = styled.input`
 
 interface IInputDateProps {
   children?: string,
+  setDate?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  value?: string,
 }
 
-const InputDate: FC<IInputDateProps> = ({children}) => {
+const InputDate: FC<IInputDateProps> = ({children,value,setDate}) => {
   return (
-    <StyledInputDate type={'date'}>
+    <StyledInputDate type={'date'} value={value} onChange={setDate}>
       {children}
     </StyledInputDate>
   );

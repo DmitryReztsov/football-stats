@@ -3,12 +3,13 @@ import axios from "axios";
 import {getUrl, URLS} from "../../utils/urls";
 import {TOKEN} from "../../utils/settings";
 import {IMatch, MatchAction, MatchActionTypes} from "./types";
+import {getScore} from "../../utils/common";
 
-export const fetchMatches = (id: string, params: string = '') => {
+export const fetchMatches = (id: string, params: string | null) => {
   return async (dispatch: Dispatch<MatchAction>) => {
     try {
       dispatch({type: MatchActionTypes.FETCH_MATCHES})
-      const url = getUrl(URLS.GET_MATCHES + id + '/matches' + '?' + params)
+      const url = getUrl(URLS.GET_MATCHES + id + '/matches' + (params ? `?season=${params}` : ''))
       const response = await axios.get(url, {
         headers: {
           'X-Auth-Token': TOKEN,
@@ -25,7 +26,7 @@ export const fetchMatches = (id: string, params: string = '') => {
           stage:  matchesArray[i].stage,
           homeTeam:  matchesArray[i].homeTeam.name,
           awayTeam:  matchesArray[i].awayTeam.name,
-          score:  `${matchesArray[i].score.fullTime.homeTeam}` + ' : ' + `${matchesArray[i].score.fullTime.awayTeam}`,
+          score: getScore(matchesArray[i].score.fullTime.homeTeam,matchesArray[i].score.fullTime.awayTeam),
         })
       }
       setTimeout(() => {

@@ -9,13 +9,14 @@ import {useTypedSelector} from "../../../store/selectors";
 import Loading from "../../microcomponents/loading/Loading";
 import Button from "../../microcomponents/form/Button";
 import styled from "styled-components";
+import {clearSearch} from "../../../store/search/actions";
 
 
 const StyledCompetitionPage = styled.div`
   & > div {
     margin-top: 1rem;
   }
-  & > Button {
+  &  Button {
     display: block;
     margin: 0 auto;
   }
@@ -35,11 +36,15 @@ const CompetitionPage: FC = () => {
   || {name: localStorage.getItem('name')};
   let name = state.name
 
+
   useEffect(() => {
-    dispatch(fetchMatches(id!,searchParams.toString()))
+    dispatch(fetchMatches(id!,searchParams.get('season')))
   },[searchParams])
 
   useEffect(() => {
+    if (!searchParams.toString()) {
+      dispatch(clearSearch())
+    }
     localStorage.setItem('name', name)
   },[])
 
