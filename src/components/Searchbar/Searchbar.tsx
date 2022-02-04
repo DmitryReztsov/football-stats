@@ -23,9 +23,10 @@ const StyledSearchbar = styled.div`
 interface ISearchBarProps {
   noDate?: boolean,
   noCompetition?: boolean,
+  noSeason?: boolean,
 }
 
-const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition}) => {
+const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition,noSeason}) => {
   const dispatch = useDispatch()
   const [searchParams, setSearchParams] = useSearchParams();
   const {season, substr, dateFrom, dateTo, competition} = useTypedSelector(state => state.search)
@@ -64,6 +65,8 @@ const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition}) => {
     setSearchParams(searchParams);
   }
 
+  const DATE_ARRAY = ['2022','2021','2020','2019','2018','2017','2016','2015'];
+
   useEffect(() => {
     dispatch(fetchCompetition())
     if (searchParams.has('season')) dispatch(setSeason(searchParams.get('season')!));
@@ -93,19 +96,18 @@ const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition}) => {
           })}
         </Select>
       }
-      <Select value={season} change={setSeasonHandler}>
-        <option value="">All time</option>
-        <option value="2022">2022</option>
-        <option value="2021">2021</option>
-        <option value="2020">2020</option>
-        <option value="2019">2019</option>
-        <option value="2018">2018</option>
-        <option value="2017">2017</option>
-        <option value="2016">2016</option>
-        <option value="2015">2015</option>
-      </Select>
+      {noSeason ?
+        null
+        :
+        <Select value={season} change={setSeasonHandler}>
+          <option value="">All seasons</option>
+          {DATE_ARRAY.map((date) => {
+            return <option key={date} value={date}>{date}</option>
+          })}
+        </Select>
+      }
       <InputSearch placeholder={'Искать команду'} value={substr} setSubstr={setSubstrHandler}/>
-      <Button click={submitHandler}>Поиск</Button>
+      <Button click={submitHandler}>Search</Button>
     </StyledSearchbar>
   );
 };
