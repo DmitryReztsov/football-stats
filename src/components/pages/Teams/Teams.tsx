@@ -9,6 +9,7 @@ import Searchbar from "../../Searchbar/Searchbar";
 import {useSearchParams} from "react-router-dom";
 import {sortTeams} from "../../../utils/common";
 import {clearSearch} from "../../../store/search/actions";
+import ErrorBanner from "../../errors/ErrorBanner";
 
 const Teams: FC = () => {
 
@@ -41,7 +42,8 @@ const Teams: FC = () => {
       <Searchbar noDate/>
       {loading ?
         <Loading/> :
-        error ? <h2>Ууу, ошибка! {error.message}</h2> :
+        error ? <ErrorBanner error={error}/>
+        :
           <TeamList teams={teams}/>
       }
     </div>

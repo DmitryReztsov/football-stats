@@ -3,6 +3,7 @@ import axios from "axios";
 import {getUrl, URLS} from "../../utils/urls";
 import {TIER, TOKEN} from "../../utils/settings";
 import {ITeam, TeamAction, TeamActionTypes} from "./types";
+import {CompetitionActionTypes} from "../competition/types";
 
 export const fetchTeam = (id: string, season: string | null) => {
   return async (dispatch: Dispatch<TeamAction>) => {
@@ -31,10 +32,8 @@ export const fetchTeam = (id: string, season: string | null) => {
         dispatch({type: TeamActionTypes.FETCH_TEAM_SUCCESS, payload: teams})
       }, 500)
 
-    } catch (e) {
-      if (e instanceof Error) {
-        dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: e})
-      }
+    } catch (e: any) {
+      dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: e.response.status})
     }
 
 

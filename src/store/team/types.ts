@@ -12,7 +12,7 @@ export interface ITeam {
 export interface ITeamState {
   teams: ITeam [] | [],
   loading: boolean,
-  error: Error | null,
+  error: number | null,
 }
 
 export enum TeamActionTypes {
@@ -32,7 +32,7 @@ export interface FetchTeamSuccessAction {
 
 export interface FetchTeamErrorAction {
   type: TeamActionTypes.FETCH_TEAM_ERROR,
-  payload: Error,
+  payload: number,
 }
 
 

@@ -11,6 +11,7 @@ import MatchList from "../../lists/MatchList/MatchList";
 import Button from "../../microcomponents/form/Button";
 import styled from "styled-components";
 import {ITeam} from "../../../store/team/types";
+import ErrorBanner from "../../errors/ErrorBanner";
 
 const StyledTeamPage = styled.div`
   & > div {
@@ -108,7 +109,8 @@ const TeamPage: FC = () => {
       <Searchbar noSeason noCompetition/>
       {loading ?
         <Loading/> :
-        error ? <h2>Ууу, ошибка! {error.message}</h2> :
+        error ? <ErrorBanner error={error}/>
+        :
           <>
             <MatchList matches={matches} count={count}/>
             <Button click={() => setCount(state => state + 30)}>Show more</Button>

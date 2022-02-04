@@ -13,6 +13,7 @@ export const fetchCompetition = () => {
           'X-Auth-Token': TOKEN,
         }
       })
+
       const competitionArray = response.data.competitions;
       const competitions: ICompetition[] = [];
       for (let i = 0; i < competitionArray.length; i++) {
@@ -30,12 +31,8 @@ export const fetchCompetition = () => {
         dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_SUCCESS, payload: competitions})
       }, 500)
 
-    } catch (e) {
-      if (e instanceof Error) {
-        dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: e})
-      }
+    } catch (e: any) {
+      dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: e.response.status})
     }
-
-
   }
 }

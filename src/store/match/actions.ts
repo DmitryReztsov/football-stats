@@ -1,9 +1,10 @@
 import {Dispatch} from "redux";
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import {getUrl, getUrlForMatches, URLS} from "../../utils/urls";
 import {TOKEN} from "../../utils/settings";
 import {IMatch, MatchAction, MatchActionTypes} from "./types";
 import {getScore} from "../../utils/common";
+
 
 export const fetchMatches = (id: string, type: string, params?: string | null) => {
   return async (dispatch: Dispatch<MatchAction>) => {
@@ -15,6 +16,7 @@ export const fetchMatches = (id: string, type: string, params?: string | null) =
           'X-Auth-Token': TOKEN,
         }
       })
+
       const matchesArray = response.data.matches;
 
       const matches: IMatch[] = [];
@@ -33,12 +35,8 @@ export const fetchMatches = (id: string, type: string, params?: string | null) =
         dispatch({type: MatchActionTypes.FETCH_MATCHES_SUCCESS, payload: matches})
       }, 500)
 
-    } catch (e) {
-      if (e instanceof Error) {
-        dispatch({type: MatchActionTypes.FETCH_MATCHES_ERROR, payload: e})
-      }
+    } catch (e: any) {
+        dispatch({type: MatchActionTypes.FETCH_MATCHES_ERROR, payload: e.response.status})
     }
-
-
   }
 }

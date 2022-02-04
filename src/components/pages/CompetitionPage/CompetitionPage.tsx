@@ -10,6 +10,7 @@ import Loading from "../../microcomponents/loading/Loading";
 import Button from "../../microcomponents/form/Button";
 import styled from "styled-components";
 import {clearSearch} from "../../../store/search/actions";
+import ErrorBanner from "../../errors/ErrorBanner";
 
 
 const StyledCompetitionPage = styled.div`
@@ -56,7 +57,9 @@ const CompetitionPage: FC = () => {
       <Searchbar noCompetition/>
       {loading ?
         <Loading/> :
-        error ? <h2>Ууу, ошибка! {error.message}</h2> :
+        error ?
+          <ErrorBanner error={error}/>
+          :
           <>
             <MatchList matches={matches} count={count}/>
             <Button click={() => setCount(state => state + 30)}>Show more</Button>
