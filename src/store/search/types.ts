@@ -1,15 +1,23 @@
 export interface ISearchState {
-  year: string
+  season: string
   substr: string,
+  dateFrom: string,
+  dateTo: string,
+  competition: string,
 }
-export enum SearchActionTypes  {
-    SET_YEAR = 'SET_YEAR',
-    SET_SUBSTR = 'SET_SUBSTR',
+
+export enum SearchActionTypes {
+  SET_SEASON = 'SET_SEASON',
+  SET_SUBSTR = 'SET_SUBSTR',
+  SET_DATE_FROM = 'SET_DATE_FROM',
+  SET_DATE_TO = 'SET_DATE_TO',
+  SET_COMPETITION = 'SET_COMPETITION',
+  CLEAR_SEARCH = 'CLEAR_SEARCH',
 }
 
 
-export interface YearSearchAction {
-  type: SearchActionTypes.SET_YEAR,
+export interface SeasonSearchAction {
+  type: SearchActionTypes.SET_SEASON,
   payload: string,
 }
 
@@ -18,6 +26,29 @@ export interface SubstrSearchAction {
   payload: string
 }
 
+export interface DateFromSearchAction {
+  type: SearchActionTypes.SET_DATE_FROM,
+  payload: string
+}
+
+export interface DateToSearchAction {
+  type: SearchActionTypes.SET_DATE_TO,
+  payload: string
+}
+
+export interface CompetitionSearchAction {
+  type: SearchActionTypes.SET_COMPETITION,
+  payload: string
+}
+
+export interface ClearSearchAction {
+  type: SearchActionTypes.CLEAR_SEARCH
+}
 
 
-export type SearchAction = YearSearchAction | SubstrSearchAction
+export type SearchAction = SeasonSearchAction
+  | SubstrSearchAction
+  | ClearSearchAction
+  | DateFromSearchAction
+  | DateToSearchAction
+  | CompetitionSearchAction;

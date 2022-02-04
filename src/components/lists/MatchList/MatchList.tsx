@@ -1,13 +1,16 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styled from "styled-components";
-import {IMatch} from "../../store/match/types";
-import { formatDate } from '../../utils/common';
+import {IMatch} from "../../../store/match/types";
+import {formatDate, sortByDate, sortBySubstr} from '../../../utils/common';
+import {useSearchParams} from "react-router-dom";
+import {ITeam} from "../../../store/team/types";
 
 const StyledMatchList = styled.table`
   width: 100%;
   text-align: center;
   border-collapse: collapse;
   font-size: 1.2rem;
+  margin-top: 1rem;
   
   thead {
     background-color: ${({theme}) => theme.colors.middle_green};
@@ -46,6 +49,18 @@ interface IMatchListProps {
 }
 
 const MatchList: FC<IMatchListProps> = ({matches, count}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const substr = searchParams.get('substr');
+  const dateFrom = searchParams.get('dateFrom');
+  const dateTo = searchParams.get('dateTo');
+
+  if (dateFrom || dateTo) matches = sortByDate(matches,dateFrom,dateTo)
+  if (substr) matches = sortBySubstr(matches,substr)
+
+  useEffect(()=> {
+
+  },[])
 
   return (
     <StyledMatchList>
@@ -60,7 +75,8 @@ const MatchList: FC<IMatchListProps> = ({matches, count}) => {
         </tr>
       </thead>
       <tbody>
-      {matches.map((match,index) => {
+      {matches
+        .map((match,index) => {
         if (index <= count - 1) {
           return(
           <tr key={match.id}>
@@ -76,7 +92,7 @@ const MatchList: FC<IMatchListProps> = ({matches, count}) => {
       </tbody>
       <tfoot>
         <tr>
-          <td colSpan={6}>Matches: {matches.length}</td>
+          <td colSpan={6}>{matches.length ? 'Matches: ' + matches.length : 'Matches not found, change filters'}</td>
         </tr>
       </tfoot>
     </StyledMatchList>

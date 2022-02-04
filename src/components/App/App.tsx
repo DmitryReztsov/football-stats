@@ -6,6 +6,7 @@ import Competitions from "../pages/Competitions/Competitions";
 import Teams from "../pages/Teams/Teams";
 import styled from "styled-components";
 import CompetitionPage from "../pages/CompetitionPage/CompetitionPage";
+import TeamPage from "../pages/TeamPage/TeamPage";
 
 const StyledApp = styled.div`
   background-color: ${({theme}) => theme.colors.white};
@@ -22,6 +23,7 @@ function App() {
           <Route path={"competitions"} element={<Competitions/>}/>
           <Route path={"competitions/:id"} element={<CompetitionPage/>}/>
           <Route path={"teams"} element={<Teams/>}/>
+          <Route path={"teams/:id"} element={<TeamPage/>}/>
         </Route>
       </Routes>
     </StyledApp>

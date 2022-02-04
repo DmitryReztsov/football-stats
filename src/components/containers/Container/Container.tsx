@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 `
 

@@ -11,7 +11,7 @@ export interface IMatch {
 export interface IMatchState {
   matches: IMatch [] | [],
   loading: boolean,
-  error: Error | null,
+  error: number | null,
 }
 
 export enum MatchActionTypes {
@@ -31,7 +31,7 @@ export interface FetchMatchSuccessAction {
 
 export interface FetchMatchErrorAction {
   type: MatchActionTypes.FETCH_MATCHES_ERROR,
-  payload: Error,
+  payload: number,
 }
 
 

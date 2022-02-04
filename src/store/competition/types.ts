@@ -9,7 +9,7 @@ export interface ICompetition {
 export interface ICompetitionState {
   competitions: ICompetition [] | [],
   loading: boolean,
-  error: Error | null,
+  error: number | null,
 }
 
 export enum CompetitionActionTypes {
@@ -29,7 +29,7 @@ export interface FetchCompetitionSuccessAction {
 
 export interface FetchCompetitionErrorAction {
   type: CompetitionActionTypes.FETCH_COMPETITION_ERROR,
-  payload: Error,
+  payload: number,
 }
 
 

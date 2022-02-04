@@ -1,7 +1,6 @@
 import React, {FC} from "react";
 import styled from "styled-components";
 import {frame} from "../../../styles/fragments";
-import {useSearchParams} from "react-router-dom";
 
 const StyledSelect = styled.select`
   ${frame};
@@ -9,14 +8,13 @@ const StyledSelect = styled.select`
 
 interface ISelectProps {
   children: React.ReactNode,
-  setYear?: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+  change?: (e: React.ChangeEvent<HTMLSelectElement>) => void,
   value: string
 }
 
-const Select: FC<ISelectProps> = ({children,setYear,value}) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+const Select: FC<ISelectProps> = ({children,change,value}) => {
   return (
-    <StyledSelect onChange={setYear} value={searchParams.get('season') || value}>
+    <StyledSelect value={value} onChange={change} >
       {children}
     </StyledSelect>
   );

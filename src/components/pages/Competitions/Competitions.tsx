@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {Title2} from "../../microcomponents/titles/Titles";
 import CompetitionList from "../../lists/CompetitionList/CompetitionList";
 import Loading from "../../microcomponents/loading/Loading";
+import ErrorBanner from "../../errors/ErrorBanner";
 
 const Competitions: FC = () => {
   const {competitions, loading, error} = useTypedSelector(state => state.competition)
@@ -22,10 +23,10 @@ const Competitions: FC = () => {
       </Title2>
       {loading ?
         <Loading/> :
-        error ? <h2>Ууу, ошибка! {error.message}</h2> :
+        error ? <ErrorBanner error={error}/>
+        :
           <CompetitionList competitions={competitions}/>
       }
-
     </div>
   );
 };

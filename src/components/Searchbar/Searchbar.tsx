@@ -5,11 +5,12 @@ import Select from "../microcomponents/form/Select";
 import InputSearch from "../microcomponents/form/InputSearch";
 import InputDate from "../microcomponents/form/InputDate";
 import {useDispatch} from "react-redux";
-import {setYear} from "../../store/search/actions";
+import {setSubstr, setSeason, setDateFrom, setDateTo, setCompetition} from "../../store/search/actions";
 import {useTypedSelector} from "../../store/selectors";
-import { useSearchParams } from 'react-router-dom';
+import {useSearchParams} from 'react-router-dom';
+import {fetchCompetition} from "../../store/competition/actions";
 
-const StyledSearchbar = styled.form`
+const StyledSearchbar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,39 +20,94 @@ const StyledSearchbar = styled.form`
   }
 `
 
-const Searchbar: FC = () => {
+interface ISearchBarProps {
+  noDate?: boolean,
+  noCompetition?: boolean,
+  noSeason?: boolean,
+}
+
+const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition,noSeason}) => {
   const dispatch = useDispatch()
   const [searchParams, setSearchParams] = useSearchParams();
-  const {year} = useTypedSelector(state => state.search)
+  const {season, substr, dateFrom, dateTo, competition} = useTypedSelector(state => state.search)
+  const {competitions} = useTypedSelector(state => state.competition)
 
-  const setYearHandler = (e: React.ChangeEvent<HTMLSelectElement>) : void => {
-    dispatch(setYear(e.currentTarget.value));
-    setSearchParams({season:e.currentTarget.value})
+  const setSeasonHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    dispatch(setSeason(e.currentTarget.value));
+    searchParams.set('season', e.currentTarget.value)
+    setSearchParams(searchParams);
   }
 
-  useEffect(()=> {
-    if (searchParams.has(year)) dispatch(setYear(searchParams.get(year)!));
-  },[])
+  const setSubstrHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    dispatch(setSubstr(e.currentTarget.value));
+  }
+
+  const setDateFromHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    dispatch(setDateFrom(e.currentTarget.value));
+    searchParams.set('dateFrom', e.currentTarget.value)
+    setSearchParams(searchParams);
+  }
+
+  const setDateToHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    dispatch(setDateTo(e.currentTarget.value));
+    searchParams.set('dateTo', e.currentTarget.value)
+    setSearchParams(searchParams);
+  }
+
+  const setCompetitionHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    dispatch(setCompetition(e.currentTarget.value));
+    searchParams.set('competition', e.currentTarget.value)
+    setSearchParams(searchParams);
+  }
+
+  const submitHandler = (): void => {
+    searchParams.set('substr', substr)
+    setSearchParams(searchParams);
+  }
+
+  const DATE_ARRAY = ['2022','2021','2020','2019','2018','2017','2016','2015'];
+
+  useEffect(() => {
+    dispatch(fetchCompetition())
+    if (searchParams.has('season')) dispatch(setSeason(searchParams.get('season')!));
+    if (searchParams.has('substr')) dispatch(setSubstr(searchParams.get('substr')!));
+    if (searchParams.has('dateFrom')) dispatch(setDateFrom(searchParams.get('dateFrom')!));
+    if (searchParams.has('dateTo')) dispatch(setDateTo(searchParams.get('dateTo')!));
+    if (searchParams.has('competition')) dispatch(setCompetition(searchParams.get('competition')!));
+  }, [])
 
   return (
     <StyledSearchbar>
-      <span>From</span>
-      <InputDate/>
-      <span>To</span>
-      <InputDate/>
-      <Select value={year} setYear={setYearHandler}>
-        <option value="">Choose season</option>
-        <option value="2022">2022</option>
-        <option value="2021">2021</option>
-        <option value="2020">2020</option>
-        <option value="2019">2019</option>
-        <option value="2018">2018</option>
-        <option value="2017">2017</option>
-        <option value="2016">2016</option>
-        <option value="2015">2015</option>
-      </Select>
-      <InputSearch placeholder={'Искать команду'}/>
-      <Button type="submit">Поиск</Button>
+      {noDate ?
+        null
+        : <>
+          <span>From</span>
+          <InputDate value={dateFrom} setDate={setDateFromHandler}/>
+          <span>To</span>
+          <InputDate value={dateTo} setDate={setDateToHandler}/>
+        </>
+      }
+      {noCompetition ?
+        null
+        :
+        <Select value={competition} change={setCompetitionHandler}>
+          {competitions.map((comp) => {
+            return <option key={comp.id} value={comp.id}>{comp.name}</option>
+          })}
+        </Select>
+      }
+      {noSeason ?
+        null
+        :
+        <Select value={season} change={setSeasonHandler}>
+          <option value="">All seasons</option>
+          {DATE_ARRAY.map((date) => {
+            return <option key={date} value={date}>{date}</option>
+          })}
+        </Select>
+      }
+      <InputSearch placeholder={'Искать команду'} value={substr} setSubstr={setSubstrHandler}/>
+      <Button click={submitHandler}>Search</Button>
     </StyledSearchbar>
   );
 };

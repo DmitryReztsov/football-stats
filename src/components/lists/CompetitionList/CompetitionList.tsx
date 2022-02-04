@@ -61,7 +61,7 @@ const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
           <StyledCompetitionCard
             key={comp.id}
             to={`/competitions/${comp.id}`}
-            state={{name: comp.name, defaultParams:'season=2021'}}
+            state={{name: comp.name}}
             code={comp.code}
           >
             <div/>
