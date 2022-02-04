@@ -16,7 +16,7 @@ const StyledCompetitionPage = styled.div`
   & > div {
     margin-top: 1rem;
   }
-  &  Button {
+  & > Button {
     display: block;
     margin: 0 auto;
   }
@@ -38,7 +38,7 @@ const CompetitionPage: FC = () => {
 
 
   useEffect(() => {
-    dispatch(fetchMatches(id!,searchParams.get('season')))
+    dispatch(fetchMatches(id!,'comp', searchParams.get('season')))
   },[searchParams])
 
   useEffect(() => {
@@ -57,10 +57,10 @@ const CompetitionPage: FC = () => {
       {loading ?
         <Loading/> :
         error ? <h2>Ууу, ошибка! {error.message}</h2> :
-          <div>
+          <>
             <MatchList matches={matches} count={count}/>
             <Button click={() => setCount(state => state + 30)}>Show more</Button>
-          </div>
+          </>
       }
     </StyledCompetitionPage>
   );

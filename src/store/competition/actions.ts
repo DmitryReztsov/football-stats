@@ -8,7 +8,7 @@ export const fetchCompetition = () => {
   return async (dispatch: Dispatch<CompetitionAction>) => {
     try {
       dispatch({type: CompetitionActionTypes.FETCH_COMPETITION})
-      const response = await axios.get(getUrl(URLS.GET_COMPETITIONS), {
+      const response = await axios.get(getUrl(URLS.COMPETITIONS), {
         headers: {
           'X-Auth-Token': TOKEN,
         }

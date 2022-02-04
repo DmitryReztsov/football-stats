@@ -1,15 +1,15 @@
 import {Dispatch} from "redux";
 import axios from "axios";
-import {getUrl, URLS} from "../../utils/urls";
+import {getUrl, getUrlForMatches, URLS} from "../../utils/urls";
 import {TOKEN} from "../../utils/settings";
 import {IMatch, MatchAction, MatchActionTypes} from "./types";
 import {getScore} from "../../utils/common";
 
-export const fetchMatches = (id: string, params: string | null) => {
+export const fetchMatches = (id: string, type: string, params?: string | null) => {
   return async (dispatch: Dispatch<MatchAction>) => {
     try {
       dispatch({type: MatchActionTypes.FETCH_MATCHES})
-      const url = getUrl(URLS.GET_MATCHES + id + '/matches' + (params ? `?season=${params}` : ''))
+      const url = getUrl(getUrlForMatches(type,id) + (params ? `?season=${params}` : ''))
       const response = await axios.get(url, {
         headers: {
           'X-Auth-Token': TOKEN,

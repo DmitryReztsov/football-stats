@@ -10,6 +10,7 @@ const StyledMatchList = styled.table`
   text-align: center;
   border-collapse: collapse;
   font-size: 1.2rem;
+  margin-top: 1rem;
   
   thead {
     background-color: ${({theme}) => theme.colors.middle_green};

@@ -8,7 +8,7 @@ export const fetchTeam = (id: string, season: string | null) => {
   return async (dispatch: Dispatch<TeamAction>) => {
     try {
       dispatch({type: TeamActionTypes.FETCH_TEAM})
-      const response = await axios.get(getUrl(URLS.GET_TEAMS + id + '/teams' + (season ? '?season=' + season : '')), {
+      const response = await axios.get(getUrl(URLS.COMPETITIONS + '/' + id + URLS.TEAMS + (season ? '?season=' + season : '')), {
         headers: {
           'X-Auth-Token': TOKEN,
         }
