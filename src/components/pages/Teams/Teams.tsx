@@ -7,10 +7,12 @@ import {fetchTeam} from "../../../store/team/actions";
 import TeamList from "../../lists/TeamList/TeamList";
 import Searchbar from "../../Searchbar/Searchbar";
 import {useSearchParams} from "react-router-dom";
+import {sortTeams} from "../../../utils/common";
+import {clearSearch} from "../../../store/search/actions";
 
 const Teams: FC = () => {
 
-  const {teams, loading, error} = useTypedSelector(state => state.team)
+  let {teams, loading, error} = useTypedSelector(state => state.team)
   const dispatch = useDispatch()
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,6 +20,14 @@ const Teams: FC = () => {
   const substr = searchParams.get('substr')
   const season = searchParams.get('season')
   const competition = searchParams.get('competition')
+
+  if (substr) teams = sortTeams(teams,substr);
+
+  useEffect(() => {
+    if (!searchParams.toString()) {
+      dispatch(clearSearch())
+    }
+  },[])
 
   useEffect(() => {
     dispatch(fetchTeam(competition || '2013', season))

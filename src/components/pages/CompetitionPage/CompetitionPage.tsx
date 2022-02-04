@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Title2} from "../../microcomponents/titles/Titles";
 import Searchbar from "../../Searchbar/Searchbar";
-import MatchList from "../../MatchList/MatchList";
+import MatchList from "../../lists/MatchList/MatchList";
 import {useLocation, useParams, useSearchParams } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {fetchMatches} from "../../../store/match/actions";

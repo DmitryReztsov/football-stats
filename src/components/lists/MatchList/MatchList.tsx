@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useState} from 'react';
 import styled from "styled-components";
-import {IMatch} from "../../store/match/types";
-import {formatDate, sortByDate, sortBySubstr} from '../../utils/common';
+import {IMatch} from "../../../store/match/types";
+import {formatDate, sortByDate, sortBySubstr} from '../../../utils/common';
 import {useSearchParams} from "react-router-dom";
-import {ITeam} from "../../store/team/types";
+import {ITeam} from "../../../store/team/types";
 
 const StyledMatchList = styled.table`
   width: 100%;

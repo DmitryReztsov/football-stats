@@ -11,7 +11,13 @@ const StyledTeamList = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 2rem;
+  margin: 2rem auto;
+  
+  p {
+    width: 100%;
+    text-align: center;
+  }
+  
 `
 
 interface ITeamCardProps extends LinkProps {
@@ -56,19 +62,26 @@ const TeamList: FC<ITeamList> = ({teams}) => {
 
   return (
     <StyledTeamList>
-      {teams.map((team) => {
-        return (
-          <StyledTeamCard
-            key={team.id}
-            to={`/teams/${team.id}/matches`}
-            state={{name: team.name}}
-            logo={team.logo}
-          >
-            <div/>
-            <p>{team.name}</p>
-          </StyledTeamCard>
-        )
-      })}
+      {teams.length ?
+        <>
+        {teams.map((team) => {
+            return (
+              <StyledTeamCard
+                key={team.id}
+                to={`/teams/${team.id}`}
+                state={{name: team.name}}
+                logo={team.logo}
+              >
+                <div/>
+                <p>{team.name}</p>
+              </StyledTeamCard>
+            )
+          })}
+          </>
+          :
+        <p>Teams aren`t found, change filters</p>
+      }
+
     </StyledTeamList>
   );
 };

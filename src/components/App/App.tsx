@@ -22,6 +22,7 @@ function App() {
           <Route path={"competitions"} element={<Competitions/>}/>
           <Route path={"competitions/:id"} element={<CompetitionPage/>}/>
           <Route path={"teams"} element={<Teams/>}/>
+          <Route path={"teams/:id"} element={<TeamPage/>}/>
         </Route>
       </Routes>
     </StyledApp>
