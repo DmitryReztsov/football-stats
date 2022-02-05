@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
-import {useLocation, useParams, useSearchParams} from "react-router-dom";
+import {useParams, useSearchParams} from "react-router-dom";
 import {useTypedSelector} from "../../../store/selectors";
 import {fetchMatches} from "../../../store/match/actions";
 import {clearSearch} from "../../../store/search/actions";
@@ -10,8 +10,8 @@ import Loading from "../../microcomponents/loading/Loading";
 import MatchList from "../../lists/MatchList/MatchList";
 import Button from "../../microcomponents/form/Button";
 import styled from "styled-components";
-import {ITeam} from "../../../store/team/types";
 import ErrorBanner from "../../errors/ErrorBanner";
+import {fetchParticularTeam} from "../../../store/team/actions";
 
 const StyledTeamPage = styled.div`
   & > div {
@@ -67,44 +67,41 @@ const TeamPage: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const {id} = useParams()
   const {matches, loading, error} = useTypedSelector(state => state.matches)
+  const {team} = useTypedSelector(state => state.team)
   const [count, setCount] = useState<number>(30)
-
-  // Конструкция с LocalStorage нужна для хранения данных, которые мы
-  // забираем после ссылки 
-  const location = useLocation();
-  let state = location.state as { team: ITeam }
-    || {team: JSON.parse(localStorage.getItem('team')!)};
-  let team = state.team
-
 
   useEffect(() => {
     dispatch(fetchMatches(id!, 'team'))
-  }, [searchParams])
+  }, [searchParams,id])
 
   useEffect(() => {
     if (!searchParams.toString()) {
       dispatch(clearSearch())
     }
-    localStorage.setItem('team', JSON.stringify(team))
-  }, [])
+    dispatch(fetchParticularTeam(id!))
+  }, [id])
 
   return (
     <StyledTeamPage>
-      <StyledTeamContainer>
-        <StyledTeamLogoContainer>
-          <img src={team.logo} alt="team_logo"/>
-        </StyledTeamLogoContainer>
-        <StyledTeamInfoContainer>
-          <Title2>
-            {team.name}
-          </Title2>
-          <p>Founded in {team.founded}</p>
-          <p>{team.address}</p>
-          <p>{team.phone}</p>
-          <p>{team.email}</p>
-          <a href={team.website}>Website</a>
-        </StyledTeamInfoContainer>
-      </StyledTeamContainer>
+      {loading ?
+        null :
+        <StyledTeamContainer>
+          <StyledTeamLogoContainer>
+            <img src={team?.logo} alt="team_logo"/>
+          </StyledTeamLogoContainer>
+          <StyledTeamInfoContainer>
+            <Title2>
+              {team?.name}
+            </Title2>
+            <p>Founded in {team?.founded}</p>
+            <p>{team?.address}</p>
+            <p>{team?.phone}</p>
+            <p>{team?.email}</p>
+            <a href={team?.website}>Website</a>
+          </StyledTeamInfoContainer>
+        </StyledTeamContainer>
+      }
+
 
       <Searchbar noSeason noCompetition/>
       {loading ?

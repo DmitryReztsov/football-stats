@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
-import CustomLink from "../microcomponents/links/CustomLink/CustomLink";
+import NavigationLink from "../microcomponents/links/NavigationLink/NavigationLink";
 import {Title1} from "../microcomponents/titles/Titles";
 import Container from "../containers/Container/Container";
 
@@ -32,13 +32,13 @@ const Header: FC = () => {
         <nav>
           <ul>
             <li>
-              <CustomLink to={"/"}>Home</CustomLink>
+              <NavigationLink to={"/"}>Home</NavigationLink>
             </li>
             <li>
-              <CustomLink to={"/competitions"}>Competitions</CustomLink>
+              <NavigationLink to={"/competitions"}>Competitions</NavigationLink>
             </li>
             <li>
-              <CustomLink to={"/teams"}>Teams</CustomLink>
+              <NavigationLink to={"/teams"}>Teams</NavigationLink>
             </li>
           </ul>
         </nav>

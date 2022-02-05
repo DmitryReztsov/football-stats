@@ -26,7 +26,7 @@ export function sortByDate(matches: IMatch [], from: string | null, to: string |
 
 export function sortBySubstr(matches: IMatch [], substr: string): IMatch [] {
   return matches.filter((match) =>
-    match.homeTeam.toLowerCase().includes(substr.toLowerCase()) || match.awayTeam.toLowerCase().includes(substr.toLowerCase()))
+    match.homeTeam.name.toLowerCase().includes(substr.toLowerCase()) || match.awayTeam.name.toLowerCase().includes(substr.toLowerCase()))
 }
 
 export function sortTeams (teams: ITeam [], substr: string) : ITeam [] {

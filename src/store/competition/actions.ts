@@ -32,7 +32,11 @@ export const fetchCompetition = () => {
       }, 500)
 
     } catch (e: any) {
-      dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: e.response.status})
+      console.log(e.responce.headers)
+      if (!e.responce.headers['Access-Control-Allow-Origin']) {
+        dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: 429});
+      }
+      dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: e.response.status});
     }
   }
 }

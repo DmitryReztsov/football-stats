@@ -26,8 +26,8 @@ export const fetchMatches = (id: string, type: string, params?: string | null) =
           utcDate: matchesArray[i].utcDate,
           status:  matchesArray[i].status,
           stage:  matchesArray[i].stage,
-          homeTeam:  matchesArray[i].homeTeam.name,
-          awayTeam:  matchesArray[i].awayTeam.name,
+          homeTeam:  matchesArray[i].homeTeam,
+          awayTeam:  matchesArray[i].awayTeam,
           score: getScore(matchesArray[i].score.fullTime.homeTeam,matchesArray[i].score.fullTime.awayTeam),
         })
       }

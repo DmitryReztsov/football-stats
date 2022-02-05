@@ -69,8 +69,7 @@ const TeamList: FC<ITeamList> = ({teams}) => {
               <StyledTeamCard
                 key={team.id}
                 to={`/teams/${team.id}`}
-                state={{team: team}}
-                logo={team.logo}
+                logo={team.logo!}
               >
                 <div/>
                 <p>{team.name}</p>
