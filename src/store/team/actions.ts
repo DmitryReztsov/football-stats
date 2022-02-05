@@ -3,6 +3,7 @@ import axios from "axios";
 import {getUrl, URLS} from "../../utils/urls";
 import {TOKEN} from "../../utils/settings";
 import {ITeam, TeamAction, TeamActionTypes} from "./types";
+import {MatchActionTypes} from "../match/types";
 
 export const fetchTeam = (id: string, season: string | null) => {
   return async (dispatch: Dispatch<TeamAction>) => {
@@ -32,7 +33,10 @@ export const fetchTeam = (id: string, season: string | null) => {
       }, 500)
 
     } catch (e: any) {
-      dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: e.response.status})
+      if (e.message === 'Network Error') {
+        dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: 429});
+      }
+      dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: e.response.status});
     }
   }
 }
@@ -61,7 +65,10 @@ export const fetchParticularTeam = (id: string) => {
         dispatch({type: TeamActionTypes.FETCH_PARTICULAR_TEAM_SUCCESS, payload: team})
       }, 500)
     } catch (e: any) {
-      dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: e.response.status})
+      if (e.message === 'Network Error') {
+        dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: 429});
+      }
+      dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: e.response.status});
     }
   }
 }

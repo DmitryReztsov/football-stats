@@ -4,6 +4,7 @@ import {getUrl, getUrlForMatches, URLS} from "../../utils/urls";
 import {TOKEN} from "../../utils/settings";
 import {IMatch, MatchAction, MatchActionTypes} from "./types";
 import {getScore} from "../../utils/common";
+import {CompetitionActionTypes} from "../competition/types";
 
 
 export const fetchMatches = (id: string, type: string, params?: string | null) => {
@@ -36,7 +37,10 @@ export const fetchMatches = (id: string, type: string, params?: string | null) =
       }, 500)
 
     } catch (e: any) {
-        dispatch({type: MatchActionTypes.FETCH_MATCHES_ERROR, payload: e.response.status})
+      if (e.message === 'Network Error') {
+        dispatch({type: MatchActionTypes.FETCH_MATCHES_ERROR, payload: 429});
+      }
+      dispatch({type: MatchActionTypes.FETCH_MATCHES_ERROR, payload: e.response.status});
     }
   }
 }

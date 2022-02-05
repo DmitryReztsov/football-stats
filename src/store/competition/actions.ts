@@ -32,8 +32,7 @@ export const fetchCompetition = () => {
       }, 500)
 
     } catch (e: any) {
-      console.log(e.responce.headers)
-      if (!e.responce.headers['Access-Control-Allow-Origin']) {
+      if (e.message === 'Network Error') {
         dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: 429});
       }
       dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: e.response.status});
