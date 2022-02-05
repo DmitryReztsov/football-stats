@@ -7,6 +7,7 @@ import Teams from "../pages/Teams/Teams";
 import styled from "styled-components";
 import CompetitionPage from "../pages/CompetitionPage/CompetitionPage";
 import TeamPage from "../pages/TeamPage/TeamPage";
+import ErrorBanner from "../errors/ErrorBanner";
 
 const StyledApp = styled.div`
   background-color: ${({theme}) => theme.colors.white};
@@ -24,6 +25,7 @@ function App() {
           <Route path={"competitions/:id"} element={<CompetitionPage/>}/>
           <Route path={"teams"} element={<Teams/>}/>
           <Route path={"teams/:id"} element={<TeamPage/>}/>
+          <Route path={"*"} element={<ErrorBanner error={404}/>}/>
         </Route>
       </Routes>
     </StyledApp>

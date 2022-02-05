@@ -12,6 +12,9 @@ export const Title1 = styled.h1<TitleProps>`
   font-weight: ${({weight = 700}) => weight};
   color: ${({theme}) => theme.colors.white};
   letter-spacing: 0.1rem;
+  @media ${({theme}) => theme.media.small} {
+    font-size: 2rem;
+  }
 `
 
 export const Title2 = styled.h2<TitleProps>`
@@ -19,4 +22,8 @@ export const Title2 = styled.h2<TitleProps>`
   padding: 1rem;
   font-weight: ${({weight = 700}) => weight};
   text-align: ${({centered}) => centered ? 'center' : 'left'};
+  @media ${({theme}) => theme.media.small} {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
 `

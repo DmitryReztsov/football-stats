@@ -11,7 +11,12 @@ const StyledCompetitionList = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 2rem;
+  row-gap: 1rem;
+  column-gap: 1rem;
+  margin: 2rem 0;
+  @media ${({theme}) => theme.media.small} {
+    margin: 1rem 0;
+  }
 `
 
 interface ICompetitionCardProps extends LinkProps {
@@ -19,10 +24,9 @@ interface ICompetitionCardProps extends LinkProps {
 }
 
 const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
-  flex: 0 1 22%;
-  padding: 5px;
-  margin: 5px;
+  flex: 1 0 20%;
   border-radius: 5px;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +34,10 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
   box-shadow: 0 2px 3px 1px #cacaca;
   transition: 0.5s all;
   color: ${({theme}) => theme.colors.black};
+  
+  @media ${({theme}) => theme.media.small} {
+      flex: 1 0 40%;
+  }
   
   
   &:hover {
@@ -39,16 +47,24 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
   
   & div {
     margin: 0 auto;
-    padding: 0.5rem;
-    width: 10rem;
-    height: 10rem;
+    padding: 5rem;
+    width: 80%;
+    height: 80%;
     background:${({code}) => `url('/assets/${code}.png') center no-repeat`};
     background-size: contain;
+    
+    @media ${({theme}) => theme.media.small} {
+      padding: 2.5rem;
+    }
   }
   & p {
     text-align: center;
     padding: 1rem;
     font-size: 1.5rem;
+    
+    @media ${({theme}) => theme.media.small} {
+      font-size: 1rem;
+    }
   }
 `
 
