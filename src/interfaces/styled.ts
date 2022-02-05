@@ -1,4 +1,3 @@
-
 export interface ITheme {
   colors: {
     dark_green: string,

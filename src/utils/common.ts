@@ -1,6 +1,7 @@
 import {Dates} from "../interfaces/dates";
 import {IMatch} from "../store/match/types";
 import {ITeam} from "../store/team/types";
+import {STAGES, STATUS} from "../interfaces/match";
 
 export function formatDate(date: string): string {
   const time = new Date(Date.parse(date));
@@ -8,6 +9,14 @@ export function formatDate(date: string): string {
   const month: number = time.getMonth()
   const year: number = time.getFullYear()
   return day + 'th' + ' ' + Dates[month] + ' ' + year
+}
+
+export function formatStage(stage: string): string {
+  return STAGES.get(stage)!;
+}
+
+export function formatStatus(status: string): string {
+  return STATUS.get(status)!;
 }
 
 export function getScore<T>(homeGoal: T, awayGoal: T): string {
@@ -26,7 +35,7 @@ export function sortByDate(matches: IMatch [], from: string | null, to: string |
 
 export function sortBySubstr(matches: IMatch [], substr: string): IMatch [] {
   return matches.filter((match) =>
-    match.homeTeam.toLowerCase().includes(substr.toLowerCase()) || match.awayTeam.toLowerCase().includes(substr.toLowerCase()))
+    match.homeTeam.name.toLowerCase().includes(substr.toLowerCase()) || match.awayTeam.name.toLowerCase().includes(substr.toLowerCase()))
 }
 
 export function sortTeams (teams: ITeam [], substr: string) : ITeam [] {

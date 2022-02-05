@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
+import Container from "../containers/Container/Container";
 
 const StyledFooter = styled.footer`
   background-color: ${({theme}) => theme.colors.bg};
@@ -10,7 +11,9 @@ const StyledFooter = styled.footer`
 const Footer: FC = () => {
   return (
     <StyledFooter>
-      &#169; 2022 All rights reserved
+      <Container>
+        &#169; 2022 All rights reserved
+      </Container>
     </StyledFooter>
   );
 };

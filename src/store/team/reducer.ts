@@ -1,6 +1,7 @@
 import {ITeamState, TeamAction, TeamActionTypes} from "./types";
 
 const initialState = {
+  team: null,
   teams: [],
   loading: false,
   error: null,
@@ -14,8 +15,11 @@ export function teamReducer(state: ITeamState = initialState, action: TeamAction
     case TeamActionTypes.FETCH_TEAM_SUCCESS: {
       return {...state, loading: false, teams: action.payload}
     }
+    case TeamActionTypes.FETCH_PARTICULAR_TEAM_SUCCESS: {
+      return {...state, loading: false, team: action.payload}
+    }
     case TeamActionTypes.FETCH_TEAM_ERROR: {
-      return {teams: [], loading: false, error: action.payload}
+      return {teams: [], team: null, loading: false, error: action.payload}
     }
     default : {
       return state

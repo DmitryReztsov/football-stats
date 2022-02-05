@@ -1,18 +1,26 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
-import CustomLink from "../microcomponents/links/CustomLink/CustomLink";
+import NavigationLink from "../microcomponents/links/NavigationLink/NavigationLink";
 import {Title1} from "../microcomponents/titles/Titles";
 import Container from "../containers/Container/Container";
 
 const StyledHeader = styled.header`
   background-color: ${({theme}) => theme.colors.dark_green};
   padding: 2rem;
+  
+  @media ${({theme}) => theme.media.small} {
+    padding: 1rem;
+  }
 
   nav {
     text-align: center;
     font-size: 1.5rem;
     padding: 0.5rem;
     color: ${({theme}) => theme.colors.black};
+    
+    @media ${({theme}) => theme.media.small} {
+      font-size: 1rem;
+    }
   }
   
   ul {
@@ -32,13 +40,13 @@ const Header: FC = () => {
         <nav>
           <ul>
             <li>
-              <CustomLink to={"/"}>Home</CustomLink>
+              <NavigationLink to={"/"}>Home</NavigationLink>
             </li>
             <li>
-              <CustomLink to={"/competitions"}>Competitions</CustomLink>
+              <NavigationLink to={"/competitions"}>Competitions</NavigationLink>
             </li>
             <li>
-              <CustomLink to={"/teams"}>Teams</CustomLink>
+              <NavigationLink to={"/teams"}>Teams</NavigationLink>
             </li>
           </ul>
         </nav>

@@ -32,7 +32,10 @@ export const fetchCompetition = () => {
       }, 500)
 
     } catch (e: any) {
-      dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: e.response.status})
+      if (e.message === 'Network Error') {
+        dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: 429});
+      }
+      dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: e.response.status});
     }
   }
 }

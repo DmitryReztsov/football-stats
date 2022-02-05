@@ -1,10 +1,12 @@
+import {ITeam} from "../team/types";
+
 export interface IMatch {
   id: number,
   utcDate: string,
   status: string,
   stage: string,
-  homeTeam: string,
-  awayTeam: string,
+  homeTeam: ITeam,
+  awayTeam: ITeam,
   score: string,
 }
 

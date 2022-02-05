@@ -19,6 +19,8 @@ const StyledErrorBanner = styled.div`
   }
   p {
     font-size: 1.5rem;
+    text-align: center;
+    width: 60%;
   }
 `
 

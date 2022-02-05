@@ -2,12 +2,12 @@ import React, {FC} from 'react';
 import {Link, useMatch} from "react-router-dom";
 import styled from "styled-components";
 
-interface ICustomLink {
+interface INavigationLinkProps {
   children: React.ReactNode,
   to: string,
 }
 
-const StyledLink = styled(Link)<{ color: any }>`
+const StyledNavigationLink = styled(Link)<{ color: any }>`
   color: ${props => props.color ? (({theme}) => theme.colors.light_brown) : (({theme}) => theme.colors.white)};
   transition: 0.2s color;
 
@@ -17,17 +17,17 @@ const StyledLink = styled(Link)<{ color: any }>`
   }
 `
 
-const CustomLink: FC<ICustomLink> = ({children, to}) => {
+const NavigationLink: FC<INavigationLinkProps> = ({children, to}) => {
   const match = useMatch(to)
   return (
-    <StyledLink
+    <StyledNavigationLink
       to={to}
       color={match}
     >
       {children}
-    </StyledLink>
+    </StyledNavigationLink>
 
   );
 };
 
-export default CustomLink;
+export default NavigationLink;

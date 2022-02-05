@@ -16,7 +16,7 @@ const Teams: FC = () => {
   let {teams, loading, error} = useTypedSelector(state => state.team)
   const dispatch = useDispatch()
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const substr = searchParams.get('substr')
   const season = searchParams.get('season')

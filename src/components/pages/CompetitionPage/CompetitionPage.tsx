@@ -19,13 +19,13 @@ const StyledCompetitionPage = styled.div`
   }
   & > Button {
     display: block;
-    margin: 0 auto;
+    margin: 0.5rem auto 0 auto;
   }
 `
 
 const CompetitionPage: FC = () => {
   const dispatch = useDispatch()
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const {id} = useParams()
   const {matches, loading, error} = useTypedSelector(state => state.matches)
   const [count, setCount] = useState<number>(30)
@@ -39,7 +39,7 @@ const CompetitionPage: FC = () => {
 
 
   useEffect(() => {
-    dispatch(fetchMatches(id!,'comp', searchParams.get('season')))
+    dispatch(fetchMatches('comp', id, searchParams.get('season')))
   },[searchParams])
 
   useEffect(() => {
