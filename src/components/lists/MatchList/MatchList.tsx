@@ -1,9 +1,8 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import styled from "styled-components";
 import {IMatch} from "../../../store/match/types";
-import {formatDate, formatStage, sortByDate, sortBySubstr} from '../../../utils/common';
+import {formatDate, formatStage, formatStatus, sortByDate, sortBySubstr} from '../../../utils/common';
 import {useSearchParams} from "react-router-dom";
-import {ITeam} from "../../../store/team/types";
 import TeamLink from "../../microcomponents/links/TeamLink/TeamLink";
 
 const StyledMatchList = styled.table`
@@ -101,7 +100,7 @@ const MatchList: FC<IMatchListProps> = ({matches, count}) => {
               <tr key={match.id}>
                 <td>{formatDate(match.utcDate)}</td>
                 <td>{formatStage(match.stage)}</td>
-                <td>{match.status}</td>
+                <td>{formatStatus(match.status)}</td>
                 <td>
                   <TeamLink
                     id={match.homeTeam.id}

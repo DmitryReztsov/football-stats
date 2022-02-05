@@ -19,7 +19,7 @@ const StyledTeamPage = styled.div`
   }
   & > Button {
     display: block;
-    margin: 0 auto;
+    margin: 0.5rem auto 0 auto;
   }
 `
 
@@ -91,14 +91,14 @@ const StyledTeamInfoContainer = styled.div`
 
 const TeamPage: FC = () => {
   const dispatch = useDispatch()
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const {id} = useParams()
   const {matches, loading, error} = useTypedSelector(state => state.matches)
   const {team} = useTypedSelector(state => state.team)
   const [count, setCount] = useState<number>(30)
 
   useEffect(() => {
-    dispatch(fetchMatches(id!, 'team'))
+    dispatch(fetchMatches('team', id))
   }, [searchParams,id])
 
   useEffect(() => {

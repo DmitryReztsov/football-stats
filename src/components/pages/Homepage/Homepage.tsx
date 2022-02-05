@@ -1,6 +1,12 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Title2} from "../../microcomponents/titles/Titles";
+import Loading from "../../microcomponents/loading/Loading";
+import ErrorBanner from "../../errors/ErrorBanner";
+import MatchList from "../../lists/MatchList/MatchList";
+import {useTypedSelector} from "../../../store/selectors";
+import {fetchMatches} from "../../../store/match/actions";
+import {useDispatch} from "react-redux";
 
 const StyledHomePage = styled.div`
   p {
@@ -14,6 +20,13 @@ const StyledHomePage = styled.div`
 `
 
 const Homepage: FC = () => {
+  const dispatch = useDispatch()
+  const {matches, loading, error} = useTypedSelector(state => state.matches)
+  const count = matches.length;
+
+  useEffect(() => {
+    dispatch(fetchMatches('today'))
+  },[])
 
   return (
     <StyledHomePage>
@@ -23,6 +36,18 @@ const Homepage: FC = () => {
       <p>This is a small App, which can show you information about leagues, current matches and other
         statistics
       </p>
+      <Title2 centered>
+        Today matches
+      </Title2>
+      {loading ?
+        <Loading/> :
+        error ?
+          <ErrorBanner error={error}/>
+          :
+          <>
+            <MatchList matches={matches} count={count}/>
+          </>
+      }
     </StyledHomePage>
   );
 };

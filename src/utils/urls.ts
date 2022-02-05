@@ -6,13 +6,16 @@ export enum URLS {
   TEAMS = '/teams',
 }
 
-export const getUrlForMatches = (type: string, id: string): string => {
+export const getUrlForMatches = (type: string, id?: string): string => {
   switch (type) {
     case 'comp': {
       return URLS.COMPETITIONS + '/' + id + URLS.MATCHES
     }
     case 'team': {
       return URLS.TEAMS + '/' + id + URLS.MATCHES
+    }
+    case 'today': {
+      return URLS.MATCHES
     }
     default:
       return ''

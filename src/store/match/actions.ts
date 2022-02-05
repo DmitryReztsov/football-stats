@@ -6,7 +6,7 @@ import {IMatch, MatchAction, MatchActionTypes} from "./types";
 import {getScore} from "../../utils/common";
 
 
-export const fetchMatches = (id: string, type: string, params?: string | null) => {
+export const fetchMatches = (type: string, id?: string, params?: string | null) => {
   return async (dispatch: Dispatch<MatchAction>) => {
     try {
       dispatch({type: MatchActionTypes.FETCH_MATCHES})
@@ -21,6 +21,7 @@ export const fetchMatches = (id: string, type: string, params?: string | null) =
 
       const matches: IMatch[] = [];
       for (let i = 0; i < matchesArray.length; i++) {
+        console.log(matchesArray[i].stage)
         matches.push({
           id: matchesArray[i].id,
           utcDate: matchesArray[i].utcDate,

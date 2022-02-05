@@ -1,7 +1,7 @@
 import {Dates} from "../interfaces/dates";
 import {IMatch} from "../store/match/types";
 import {ITeam} from "../store/team/types";
-import {STAGES} from "../interfaces/match";
+import {STAGES, STATUS} from "../interfaces/match";
 
 export function formatDate(date: string): string {
   const time = new Date(Date.parse(date));
@@ -13,6 +13,10 @@ export function formatDate(date: string): string {
 
 export function formatStage(stage: string): string {
   return STAGES.get(stage)!;
+}
+
+export function formatStatus(status: string): string {
+  return STATUS.get(status)!;
 }
 
 export function getScore<T>(homeGoal: T, awayGoal: T): string {
