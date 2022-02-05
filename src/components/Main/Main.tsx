@@ -7,6 +7,9 @@ const StyledMain = styled.main`
   background-color: ${({theme}) => theme.colors.bg};
   flex: 1 1 auto;
   padding: 1rem;
+  @media ${({theme}) => theme.media.small} {
+    padding: 0.5rem;
+  }
 `
 
 const Main: FC = () => {

@@ -11,7 +11,12 @@ const StyledTeamList = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 2rem auto;
+  row-gap: 1rem;
+  column-gap: 1rem;
+  margin: 2rem 0;
+  @media ${({theme}) => theme.media.small} {
+    margin: 1rem 0;
+  }
   
   p {
     width: 100%;
@@ -25,9 +30,8 @@ interface ITeamCardProps extends LinkProps {
 }
 
 const StyledTeamCard = styled(Link)<ITeamCardProps>`
-  flex: 0 0 18%;
-  padding: 3px;
-  margin: 3px;
+  flex: 1 0 20%;
+  padding: 0.5rem;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -37,6 +41,9 @@ const StyledTeamCard = styled(Link)<ITeamCardProps>`
   transition: 0.5s all;
   color: ${({theme}) => theme.colors.black};
   
+  @media ${({theme}) => theme.media.small} {
+      flex: 1 0 40%;
+  }
   
   &:hover {
     box-shadow: 0 6px 10px 3px #cacaca;
@@ -45,16 +52,24 @@ const StyledTeamCard = styled(Link)<ITeamCardProps>`
   
   & div {
     margin: 0 auto;
-    padding: 0.5rem;
-    width: 4rem;
-    height: 4rem;
+    padding: 5rem;
+    width: 80%;
+    height: 80%;
     background:${({logo}) => `url('${logo}') center no-repeat`};
     background-size: contain;
+    
+    @media ${({theme}) => theme.media.small} {
+      padding: 4rem;
+    }
   }
   & p {
     text-align: center;
     padding: 1rem;
     font-size: 1rem;
+    
+    @media ${({theme}) => theme.media.small} {
+      font-size: 1rem;
+    }
   }
 `
 

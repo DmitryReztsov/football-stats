@@ -28,17 +28,34 @@ const StyledTeamContainer = styled.section`
   align-items: center;
   justify-content: center;
   padding: 1rem 0 2rem 0;
+  
+  @media ${({theme}) => theme.media.medium} {
+    flex-direction: column;
+    padding: 0.5rem 0 1rem 0;
+  }
 `
 
 const StyledTeamLogoContainer = styled.div`
   flex: 0 1 50%;
   display: flex;
   justify-content: flex-end;
+  
+  @media ${({theme}) => theme.media.medium} {
+      justify-content: center;
+  }
+  
   img {
     width: 12rem;
     height: 12rem;
     margin: 0 3rem 0 0;
+    
+    @media ${({theme}) => theme.media.medium} {
+      margin: 0;
+      width: 6rem;
+      height: 6rem;
+    }
   }
+  
 `
 
 const StyledTeamInfoContainer = styled.div`
@@ -48,6 +65,16 @@ const StyledTeamInfoContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   row-gap: 0.3rem;
+  
+  & h2 {
+    padding-left: 0rem;
+  }
+  
+  @media ${({theme}) => theme.media.medium} {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+  }
   
   & > a {
     color: ${({theme}) => theme.colors.dark_green};
@@ -85,6 +112,8 @@ const TeamPage: FC = () => {
     <StyledTeamPage>
       {loading ?
         null :
+        error ? null
+        :
         <StyledTeamContainer>
           <StyledTeamLogoContainer>
             <img src={team?.logo} alt="team_logo"/>

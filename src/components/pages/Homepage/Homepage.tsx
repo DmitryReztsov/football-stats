@@ -1,7 +1,6 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import styled from "styled-components";
 import {Title2} from "../../microcomponents/titles/Titles";
-import axios from "axios";
 
 const StyledHomePage = styled.div`
   p {

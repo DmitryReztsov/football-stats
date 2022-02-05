@@ -1,6 +1,7 @@
 import {Dates} from "../interfaces/dates";
 import {IMatch} from "../store/match/types";
 import {ITeam} from "../store/team/types";
+import {STAGES} from "../interfaces/match";
 
 export function formatDate(date: string): string {
   const time = new Date(Date.parse(date));
@@ -8,6 +9,10 @@ export function formatDate(date: string): string {
   const month: number = time.getMonth()
   const year: number = time.getFullYear()
   return day + 'th' + ' ' + Dates[month] + ' ' + year
+}
+
+export function formatStage(stage: string): string {
+  return STAGES.get(stage)!;
 }
 
 export function getScore<T>(homeGoal: T, awayGoal: T): string {

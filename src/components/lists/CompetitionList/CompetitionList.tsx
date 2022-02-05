@@ -24,7 +24,7 @@ interface ICompetitionCardProps extends LinkProps {
 }
 
 const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
-  flex: 1 0 20%;
+  flex: 1 0 23%;
   border-radius: 5px;
   padding: 0.5rem;
   display: flex;
@@ -35,7 +35,7 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
   transition: 0.5s all;
   color: ${({theme}) => theme.colors.black};
   
-  @media ${({theme}) => theme.media.small} {
+  @media ${({theme}) => theme.media.medium} {
       flex: 1 0 40%;
   }
   
@@ -54,7 +54,7 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
     background-size: contain;
     
     @media ${({theme}) => theme.media.small} {
-      padding: 2.5rem;
+      padding: 4rem;
     }
   }
   & p {

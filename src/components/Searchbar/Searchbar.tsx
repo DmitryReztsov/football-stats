@@ -12,9 +12,34 @@ import {fetchCompetition} from "../../store/competition/actions";
 
 const StyledSearchbar = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   column-gap: 0.5rem;
+  
+  @media ${({theme}) => theme.media.large} {
+    flex-direction: column;
+    row-gap: 0.5rem;
+  }
+  
+  & > div {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    
+    & > input {
+      flex: 1 0 auto;
+    }
+  }
+    
+  & > input, div, select, button {
+    @media ${({theme}) => theme.media.large} {
+      width: 80%;
+    }
+    @media ${({theme}) => theme.media.small} {
+      width: 100%;
+    }
+  }
+  
   & > span {
     font-size: 1.2rem;
   }
@@ -81,10 +106,14 @@ const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition,noSeason}) => {
       {noDate ?
         null
         : <>
-          <span>From</span>
-          <InputDate value={dateFrom} setDate={setDateFromHandler}/>
-          <span>To</span>
-          <InputDate value={dateTo} setDate={setDateToHandler}/>
+          <div>
+            <span>From</span>
+            <InputDate value={dateFrom} setDate={setDateFromHandler}/>
+          </div>
+          <div>
+            <span>To</span>
+            <InputDate value={dateTo} setDate={setDateToHandler}/>
+          </div>
         </>
       }
       {noCompetition ?
