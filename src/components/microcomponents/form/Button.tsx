@@ -12,12 +12,10 @@ interface IButtonProps {
   type?: string
 }
 
-const Button: FC<IButtonProps> = ({children,click}) => {
-  return (
+const Button: FC<IButtonProps> = ({children,click}) => (
     <StyledButton onClick={click}>
       {children}
     </StyledButton>
   );
-};
 
 export default Button;

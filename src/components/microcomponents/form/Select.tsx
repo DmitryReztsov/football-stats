@@ -12,12 +12,10 @@ interface ISelectProps {
   value: string
 }
 
-const Select: FC<ISelectProps> = ({children,change,value}) => {
-  return (
+const Select: FC<ISelectProps> = ({children,change,value}) => (
     <StyledSelect value={value} onChange={change} >
       {children}
     </StyledSelect>
   );
-};
 
 export default Select;

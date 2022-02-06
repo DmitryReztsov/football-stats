@@ -1,13 +1,13 @@
 import React, {FC, useEffect} from 'react';
 import styled from "styled-components";
+import {useDispatch} from "react-redux";
+import {useSearchParams} from 'react-router-dom';
 import Button from "../microcomponents/form/Button";
 import Select from "../microcomponents/form/Select";
 import InputSearch from "../microcomponents/form/InputSearch";
 import InputDate from "../microcomponents/form/InputDate";
-import {useDispatch} from "react-redux";
 import {setSubstr, setSeason, setDateFrom, setDateTo, setCompetition} from "../../store/search/actions";
 import {useTypedSelector} from "../../store/selectors";
-import {useSearchParams} from 'react-router-dom';
 import {fetchCompetition} from "../../store/competition/actions";
 
 const StyledSearchbar = styled.div`
@@ -120,9 +120,7 @@ const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition,noSeason}) => {
         null
         :
         <Select value={competition} change={setCompetitionHandler}>
-          {competitions.map((comp) => {
-            return <option key={comp.id} value={comp.id}>{comp.name}</option>
-          })}
+          {competitions.map((comp) => <option key={comp.id} value={comp.id}>{comp.name}</option>)}
         </Select>
       }
       {noSeason ?
@@ -130,12 +128,10 @@ const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition,noSeason}) => {
         :
         <Select value={season} change={setSeasonHandler}>
           <option value="">All seasons</option>
-          {DATE_ARRAY.map((date) => {
-            return <option key={date} value={date}>{date}</option>
-          })}
+          {DATE_ARRAY.map((date) => <option key={date} value={date}>{date}</option>)}
         </Select>
       }
-      <InputSearch placeholder={'Искать команду'} value={substr} setSubstr={setSubstrHandler}/>
+      <InputSearch placeholder="Искать команду" value={substr} setSubstr={setSubstrHandler}/>
       <Button click={submitHandler}>Search</Button>
     </StyledSearchbar>
   );

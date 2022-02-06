@@ -1,8 +1,8 @@
 import React, {FC, useEffect} from 'react';
 import styled from "styled-components";
+import {useSearchParams} from "react-router-dom";
 import {IMatch} from "../../../store/match/types";
 import {formatDate, formatStage, formatStatus, sortByDate, sortBySubstr} from '../../../utils/common';
-import {useSearchParams} from "react-router-dom";
 import TeamLink from "../../microcomponents/links/TeamLink/TeamLink";
 
 const StyledMatchList = styled.table`
@@ -67,7 +67,7 @@ interface IMatchListProps {
 }
 
 const MatchList: FC<IMatchListProps> = ({matches, count}) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const substr = searchParams.get('substr');
   const dateFrom = searchParams.get('dateFrom');
@@ -122,7 +122,7 @@ const MatchList: FC<IMatchListProps> = ({matches, count}) => {
       </tbody>
       <tfoot>
       <tr>
-        <td colSpan={6}>{matches.length ? 'Matches: ' + matches.length : 'Matches not found, change filters'}</td>
+        <td colSpan={6}>{matches.length ? `Matches: ${  matches.length}` : 'Matches not found, change filters'}</td>
       </tr>
       </tfoot>
     </StyledMatchList>

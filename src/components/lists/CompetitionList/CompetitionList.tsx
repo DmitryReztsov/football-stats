@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
-import {ICompetition} from "../../../store/competition/types";
 import {Link, LinkProps} from "react-router-dom";
+import {ICompetition} from "../../../store/competition/types";
 
 interface ICompetitionList {
   competitions: ICompetition []
@@ -68,12 +68,9 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
   }
 `
 
-const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
-
-  return (
+const CompetitionList: FC<ICompetitionList> = ({competitions}) => (
     <StyledCompetitionList>
-      {competitions.map((comp) => {
-        return (
+      {competitions.map((comp) => (
           <StyledCompetitionCard
             key={comp.id}
             to={`/competitions/${comp.id}`}
@@ -83,10 +80,8 @@ const CompetitionList: FC<ICompetitionList> = ({competitions}) => {
             <div/>
             <p>{comp.name}</p>
           </StyledCompetitionCard>
-        )
-      })}
+        ))}
     </StyledCompetitionList>
   );
-};
 
 export default CompetitionList;

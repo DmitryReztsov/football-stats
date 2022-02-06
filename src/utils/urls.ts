@@ -9,10 +9,10 @@ export enum URLS {
 export const getUrlForMatches = (type: string, id?: string): string => {
   switch (type) {
     case 'comp': {
-      return URLS.COMPETITIONS + '/' + id + URLS.MATCHES
+      return `${URLS.COMPETITIONS}/${id}${URLS.MATCHES}`
     }
     case 'team': {
-      return URLS.TEAMS + '/' + id + URLS.MATCHES
+      return `${URLS.TEAMS}/${id}${URLS.MATCHES}`
     }
     case 'today': {
       return URLS.MATCHES
@@ -22,6 +22,4 @@ export const getUrlForMatches = (type: string, id?: string): string => {
   }
 }
 
-export const getUrl = (url: string): string => {
-  return URLS.BASE_URL + url
-}
+export const getUrl = (url: string): string => URLS.BASE_URL + url

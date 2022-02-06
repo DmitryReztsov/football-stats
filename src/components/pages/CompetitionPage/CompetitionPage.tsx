@@ -1,14 +1,14 @@
 import React, {FC, useEffect, useState} from 'react';
+import {useLocation, useParams, useSearchParams } from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import styled from "styled-components";
 import {Title2} from "../../microcomponents/titles/Titles";
 import Searchbar from "../../Searchbar/Searchbar";
 import MatchList from "../../lists/MatchList/MatchList";
-import {useLocation, useParams, useSearchParams } from 'react-router-dom';
-import {useDispatch} from "react-redux";
 import {fetchMatches} from "../../../store/match/actions";
 import {useTypedSelector} from "../../../store/selectors";
 import Loading from "../../microcomponents/loading/Loading";
 import Button from "../../microcomponents/form/Button";
-import styled from "styled-components";
 import {clearSearch} from "../../../store/search/actions";
 import ErrorBanner from "../../errors/ErrorBanner";
 
@@ -33,9 +33,9 @@ const CompetitionPage: FC = () => {
   // Конструкция с LocalStorage нужна для хранения данных, которые мы
   // забираем после ссылки 
   const location = useLocation();
-  let state = location.state as {name: string}
+  const state = location.state as {name: string}
   || {name: localStorage.getItem('name')};
-  let name = state.name
+  const {name} = state
 
 
   useEffect(() => {

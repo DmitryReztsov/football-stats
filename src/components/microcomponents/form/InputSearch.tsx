@@ -24,12 +24,10 @@ interface IInputSearchProps {
   setSubstr?: (e:React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const InputSearch: FC<IInputSearchProps> = ({children,placeholder,setSubstr,value}) => {
-  return (
+const InputSearch: FC<IInputSearchProps> = ({children,placeholder,setSubstr,value}) => (
     <StyledInput placeholder={placeholder} value={value} onChange={setSubstr}>
       {children}
     </StyledInput>
   );
-};
 
 export default InputSearch;

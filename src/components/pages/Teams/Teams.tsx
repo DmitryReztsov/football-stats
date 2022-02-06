@@ -1,12 +1,12 @@
 import React, {FC, useEffect} from 'react';
+import {useDispatch} from "react-redux";
+import {useSearchParams} from "react-router-dom";
 import {Title2} from "../../microcomponents/titles/Titles";
 import Loading from "../../microcomponents/loading/Loading";
 import {useTypedSelector} from "../../../store/selectors";
-import {useDispatch} from "react-redux";
 import {fetchTeam} from "../../../store/team/actions";
 import TeamList from "../../lists/TeamList/TeamList";
 import Searchbar from "../../Searchbar/Searchbar";
-import {useSearchParams} from "react-router-dom";
 import {sortTeams} from "../../../utils/common";
 import {clearSearch} from "../../../store/search/actions";
 import ErrorBanner from "../../errors/ErrorBanner";

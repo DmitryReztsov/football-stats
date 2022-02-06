@@ -1,12 +1,12 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import styled from "styled-components";
+import {useDispatch} from "react-redux";
 import {Title2} from "../../microcomponents/titles/Titles";
 import Loading from "../../microcomponents/loading/Loading";
 import ErrorBanner from "../../errors/ErrorBanner";
 import MatchList from "../../lists/MatchList/MatchList";
 import {useTypedSelector} from "../../../store/selectors";
 import {fetchMatches} from "../../../store/match/actions";
-import {useDispatch} from "react-redux";
 
 const StyledHomePage = styled.div`
   p {
@@ -44,9 +44,7 @@ const Homepage: FC = () => {
         error ?
           <ErrorBanner error={error}/>
           :
-          <>
-            <MatchList matches={matches} count={count}/>
-          </>
+          <MatchList matches={matches} count={count}/>
       }
     </StyledHomePage>
   );

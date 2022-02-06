@@ -8,7 +8,7 @@ export function formatDate(date: string): string {
   const day: number = time.getDate()
   const month: number = time.getMonth()
   const year: number = time.getFullYear()
-  return day + 'th' + ' ' + Dates[month] + ' ' + year
+  return `${day}th ${Dates[month]} ${year}`
 }
 
 export function formatStage(stage: string): string {
@@ -21,10 +21,10 @@ export function formatStatus(status: string): string {
 
 export function getScore<T>(homeGoal: T, awayGoal: T): string {
   if (typeof homeGoal === "number") {
-    return homeGoal + ' : ' + awayGoal
-  } else {
+    return `${homeGoal} : ${awayGoal}`
+  } 
     return 'No data'
-  }
+  
 }
 
 export function sortByDate(matches: IMatch [], from: string | null, to: string | null): IMatch [] {

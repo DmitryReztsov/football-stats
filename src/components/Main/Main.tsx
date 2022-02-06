@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
-import Container from "../containers/Container/Container";
 import {Outlet} from "react-router-dom";
+import Container from "../containers/Container/Container";
 
 const StyledMain = styled.main`
   background-color: ${({theme}) => theme.colors.bg};
@@ -12,14 +12,12 @@ const StyledMain = styled.main`
   }
 `
 
-const Main: FC = () => {
-  return (
+const Main: FC = () => (
     <StyledMain>
       <Container>
         <Outlet/>
       </Container>
     </StyledMain>
   );
-};
 
 export default Main;

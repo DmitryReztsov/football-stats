@@ -1,4 +1,4 @@
-import {CompetitionAction, CompetitionActionTypes, ICompetition, ICompetitionState} from "./types";
+import {CompetitionAction, CompetitionActionTypes, ICompetitionState} from "./types";
 
 const initialState = {
   competitions: [],

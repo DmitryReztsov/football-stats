@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
-import {competitionReducer} from "./competition/reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
+import {competitionReducer} from "./competition/reducer";
 import {matchReducer} from "./match/reducer";
 import {searchReducer} from "./search/reducer";
 import {teamReducer} from "./team/reducer";

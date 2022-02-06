@@ -3,13 +3,11 @@ import axios from "axios";
 import {getUrl, URLS} from "../../utils/urls";
 import {TOKEN} from "../../utils/settings";
 import {ITeam, TeamAction, TeamActionTypes} from "./types";
-import {MatchActionTypes} from "../match/types";
 
-export const fetchTeam = (id: string, season: string | null) => {
-  return async (dispatch: Dispatch<TeamAction>) => {
+export const fetchTeam = (id: string, season: string | null) => async (dispatch: Dispatch<TeamAction>) => {
     try {
       dispatch({type: TeamActionTypes.FETCH_TEAM})
-      const response = await axios.get(getUrl(URLS.COMPETITIONS + '/' + id + URLS.TEAMS + (season ? '?season=' + season : '')), {
+      const response = await axios.get(getUrl(`${URLS.COMPETITIONS}/${id}${URLS.TEAMS}${season ? `?season=${season}` : ''}`), {
         headers: {
           'X-Auth-Token': TOKEN,
         }
@@ -39,18 +37,16 @@ export const fetchTeam = (id: string, season: string | null) => {
       dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: e.response.status});
     }
   }
-}
 
-export const fetchParticularTeam = (id: string) => {
-  return async (dispatch: Dispatch<TeamAction>) => {
+export const fetchParticularTeam = (id: string) => async (dispatch: Dispatch<TeamAction>) => {
     try {
       dispatch({type: TeamActionTypes.FETCH_TEAM})
-      const response = await axios.get(getUrl(URLS.TEAMS + '/' + id), {
+      const response = await axios.get(getUrl(`${URLS.TEAMS  }/${  id}`), {
         headers: {
           'X-Auth-Token': TOKEN,
         }
       })
-      const data = response.data;
+      const {data} = response;
       const team: ITeam = {
         id: data.id,
         name: data.name,
@@ -71,4 +67,3 @@ export const fetchParticularTeam = (id: string) => {
       dispatch({type: TeamActionTypes.FETCH_TEAM_ERROR, payload: e.response.status});
     }
   }
-}

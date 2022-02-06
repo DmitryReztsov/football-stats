@@ -22,12 +22,10 @@ interface IInputDateProps {
   value?: string,
 }
 
-const InputDate: FC<IInputDateProps> = ({children,value,setDate}) => {
-  return (
-    <StyledInputDate type={'date'} value={value} onChange={setDate}>
+const InputDate: FC<IInputDateProps> = ({children,value,setDate}) => (
+    <StyledInputDate type="date" value={value} onChange={setDate}>
       {children}
     </StyledInputDate>
   );
-};
 
 export default InputDate;

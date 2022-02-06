@@ -8,14 +8,12 @@ const StyledFooter = styled.footer`
   padding: 0.5rem;
 `
 
-const Footer: FC = () => {
-  return (
+const Footer: FC = () => (
     <StyledFooter>
       <Container>
         &#169; 2022 All rights reserved
       </Container>
     </StyledFooter>
   );
-};
 
 export default Footer;

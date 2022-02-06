@@ -73,14 +73,11 @@ const StyledTeamCard = styled(Link)<ITeamCardProps>`
   }
 `
 
-const TeamList: FC<ITeamList> = ({teams}) => {
-
-  return (
+const TeamList: FC<ITeamList> = ({teams}) => (
     <StyledTeamList>
       {teams.length ?
         <>
-        {teams.map((team) => {
-            return (
+        {teams.map((team) => (
               <StyledTeamCard
                 key={team.id}
                 to={`/teams/${team.id}`}
@@ -89,8 +86,7 @@ const TeamList: FC<ITeamList> = ({teams}) => {
                 <div/>
                 <p>{team.name}</p>
               </StyledTeamCard>
-            )
-          })}
+            ))}
           </>
           :
         <p>Teams aren`t found, change filters</p>
@@ -98,6 +94,5 @@ const TeamList: FC<ITeamList> = ({teams}) => {
 
     </StyledTeamList>
   );
-};
 
 export default TeamList;
