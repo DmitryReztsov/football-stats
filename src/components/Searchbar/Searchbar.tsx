@@ -67,6 +67,13 @@ const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition,noSeason}) => {
     dispatch(setSubstr(e.currentTarget.value));
   }
 
+  const setSubstrByKeyHandler = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.code === 'Enter') {
+      searchParams.set('substr', substr)
+      setSearchParams(searchParams);
+    }
+  }
+
   const setDateFromHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(setDateFrom(e.currentTarget.value));
     searchParams.set('dateFrom', e.currentTarget.value)
@@ -129,7 +136,7 @@ const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition,noSeason}) => {
             {DATE_ARRAY.map((date) => <option key={date} value={date}>{date}</option>)}
           </Select>
       }
-      <InputSearch placeholder="Искать команду" value={substr} setSubstr={setSubstrHandler}/>
+      <InputSearch placeholder="Искать команду" value={substr} setSubstr={setSubstrHandler} setSubstrByKey={setSubstrByKeyHandler}/>
       <Button click={submitHandler}>Search</Button>
     </StyledSearchbar>
   );

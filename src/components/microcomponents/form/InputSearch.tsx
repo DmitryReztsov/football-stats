@@ -21,11 +21,12 @@ const StyledInput = styled.input`
 interface IInputSearchProps {
   value?: string,
   placeholder?: string,
-  setSubstr?: (e:React.ChangeEvent<HTMLInputElement>) => void
+  setSubstr?: (e:React.ChangeEvent<HTMLInputElement>) => void,
+  setSubstrByKey?: (e:React.KeyboardEvent<HTMLInputElement>) => void,
 }
 
-const InputSearch: FC<IInputSearchProps> = ({children,placeholder,setSubstr,value}) => (
-    <StyledInput placeholder={placeholder} value={value} onChange={setSubstr}>
+const InputSearch: FC<IInputSearchProps> = ({children,placeholder,setSubstr,setSubstrByKey,value}) => (
+    <StyledInput placeholder={placeholder} value={value} onChange={setSubstr} onKeyDown={setSubstrByKey}>
       {children}
     </StyledInput>
   );
