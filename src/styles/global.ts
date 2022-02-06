@@ -3,26 +3,26 @@ import {baseTheme} from "./theme";
 
 export const Global = createGlobalStyle`
   * {
-      margin: 0;
-      padding: 0;
-      border: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
   
   *,
   *::before,
   *::after {
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
   }
   
   :focus,
   :active {
-      outline: none;
+    outline: none;
   }
   
   a:focus,
   a:active {
-      outline: none;
+    outline: none;
   }
   
   nav,
@@ -30,57 +30,57 @@ export const Global = createGlobalStyle`
   header,
   aside,
   section {
-      display: block;
+    display: block;
   }
   
   html,
   body {
-      height: 100%;
-      width: 100%;
-      font-size: 16px;
-      line-height: 1;
-      -ms-text-size-adjust: 100%;
-      -moz-text-size-adjust: 100%;
-      -webkit-text-size-adjust: 100%;
-      font-family: 'Roboto', sans-serif;
-      background-color: ${baseTheme.colors.white};
-      color: ${baseTheme.colors.black}
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: ${baseTheme.colors.white};
+    color: ${baseTheme.colors.black}
   }
   
   input,
   button,
   textarea {
-      font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
   
   input::-ms-clear {
-      display: none;
+    display: none;
   }
   
   button {
-      cursor: pointer;
+    cursor: pointer;
   }
   
   button::-moz-focus-inner {
-      padding: 0;
-      border: 0;
+    padding: 0;
+    border: 0;
   }
   
   a,
   a:visited {
-      text-decoration: none;
+    text-decoration: none;
   }
   
   a:hover {
-      text-decoration: none;
+    text-decoration: none;
   }
   
   ul li {
-      list-style: none;
+    list-style: none;
   }
   
   img {
-      vertical-align: top;
+    vertical-align: top;
   }
   
   h1,
@@ -89,7 +89,7 @@ export const Global = createGlobalStyle`
   h4,
   h5,
   h6 {
-      font-size: inherit;
-      font-weight: 400;
+    font-size: inherit;
+    font-weight: 400;
   }
 `

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
+import styled from "styled-components";
 import Layout from "../Layout/Layout";
 import Homepage from "../pages/Homepage/Homepage";
 import Competitions from "../pages/Competitions/Competitions";
 import Teams from "../pages/Teams/Teams";
-import styled from "styled-components";
 import CompetitionPage from "../pages/CompetitionPage/CompetitionPage";
 import TeamPage from "../pages/TeamPage/TeamPage";
 import ErrorBanner from "../errors/ErrorBanner";
@@ -19,13 +19,13 @@ function App() {
   return (
     <StyledApp>
       <Routes>
-        <Route path={"/"} element={<Layout/>}>
+        <Route path="/" element={<Layout/>}>
           <Route index element={<Homepage/>}/>
-          <Route path={"competitions"} element={<Competitions/>}/>
-          <Route path={"competitions/:id"} element={<CompetitionPage/>}/>
-          <Route path={"teams"} element={<Teams/>}/>
-          <Route path={"teams/:id"} element={<TeamPage/>}/>
-          <Route path={"*"} element={<ErrorBanner error={404}/>}/>
+          <Route path="competitions" element={<Competitions/>}/>
+          <Route path="competitions/:id" element={<CompetitionPage/>}/>
+          <Route path="teams" element={<Teams/>}/>
+          <Route path="teams/:id" element={<TeamPage/>}/>
+          <Route path="*" element={<ErrorBanner error={404}/>}/>
         </Route>
       </Routes>
     </StyledApp>

@@ -1,11 +1,10 @@
-import {CompetitionAction, CompetitionActionTypes, ICompetition} from "./types";
 import {Dispatch} from "redux";
 import axios from "axios";
+import {CompetitionAction, CompetitionActionTypes, ICompetition} from "./types";
 import {getUrl, URLS} from "../../utils/urls";
 import {TIER, TOKEN} from "../../utils/settings";
 
-export const fetchCompetition = () => {
-  return async (dispatch: Dispatch<CompetitionAction>) => {
+export const fetchCompetition = () => async (dispatch: Dispatch<CompetitionAction>) => {
     try {
       dispatch({type: CompetitionActionTypes.FETCH_COMPETITION})
       const response = await axios.get(getUrl(URLS.COMPETITIONS), {
@@ -38,4 +37,3 @@ export const fetchCompetition = () => {
       dispatch({type: CompetitionActionTypes.FETCH_COMPETITION_ERROR, payload: e.response.status});
     }
   }
-}

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/App';
 import {BrowserRouter} from "react-router-dom";
-import {Global} from "./styles/global";
 import {ThemeProvider} from "styled-components";
-import {baseTheme} from "./styles/theme";
 import {Provider} from "react-redux";
+import App from './components/App/App';
+import {Global} from "./styles/global";
+import {baseTheme} from "./styles/theme";
 import {store} from "./store";
 
 ReactDOM.render(

@@ -20,14 +20,12 @@ const StyledTeamLink = styled(Link)`
   }
 `
 
-const TeamLink: FC<ITeamLinkProps> = ({id,children}) => {
-  return (
+const TeamLink: FC<ITeamLinkProps> = ({id,children}) => (
     <StyledTeamLink
       to={`/teams/${id}`}
     >
       {children}
     </StyledTeamLink>
   );
-};
 
 export default TeamLink;

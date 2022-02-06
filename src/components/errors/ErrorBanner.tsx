@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
+import styled from "styled-components";
 import {Title2} from "../microcomponents/titles/Titles";
 import {errors} from "../../interfaces/errors";
-import styled from "styled-components";
 
 interface IErrorBannerProps {
   error: number,
@@ -24,14 +24,12 @@ const StyledErrorBanner = styled.div`
   }
 `
 
-const ErrorBanner: FC<IErrorBannerProps> = ({error}) => {
-  return (
+const ErrorBanner: FC<IErrorBannerProps> = ({error}) => (
     <StyledErrorBanner>
       <img src="/error/sad-ball.png" alt="error-logo"/>
       <Title2>Error {error}</Title2>
       <p>{errors.get(error)}</p>
     </StyledErrorBanner>
   );
-};
 
 export default ErrorBanner;

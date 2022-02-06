@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
 import {useParams, useSearchParams} from "react-router-dom";
+import styled from "styled-components";
 import {useTypedSelector} from "../../../store/selectors";
 import {fetchMatches} from "../../../store/match/actions";
 import {clearSearch} from "../../../store/search/actions";
@@ -9,7 +10,6 @@ import Searchbar from "../../Searchbar/Searchbar";
 import Loading from "../../microcomponents/loading/Loading";
 import MatchList from "../../lists/MatchList/MatchList";
 import Button from "../../microcomponents/form/Button";
-import styled from "styled-components";
 import ErrorBanner from "../../errors/ErrorBanner";
 import {fetchParticularTeam} from "../../../store/team/actions";
 
@@ -133,11 +133,11 @@ const TeamPage: FC = () => {
 
 
       <Searchbar noSeason noCompetition/>
-      {loading ?
-        <Loading/> :
-        error ? <ErrorBanner error={error}/>
-        :
-          <>
+      {loading
+        ? <Loading/>
+        : error
+          ? <ErrorBanner error={error}/>
+          : <>
             <MatchList matches={matches} count={count}/>
             <Button click={() => setCount(state => state + 30)}>Show more</Button>
           </>

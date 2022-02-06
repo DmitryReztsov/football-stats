@@ -32,27 +32,25 @@ const StyledHeader = styled.header`
   }
 `
 
-const Header: FC = () => {
-  return (
+const Header: FC = () => (
     <StyledHeader>
       <Container>
         <Title1>Football Stats</Title1>
         <nav>
           <ul>
             <li>
-              <NavigationLink to={"/"}>Home</NavigationLink>
+              <NavigationLink to="/">Home</NavigationLink>
             </li>
             <li>
-              <NavigationLink to={"/competitions"}>Competitions</NavigationLink>
+              <NavigationLink to="/competitions">Competitions</NavigationLink>
             </li>
             <li>
-              <NavigationLink to={"/teams"}>Teams</NavigationLink>
+              <NavigationLink to="/teams">Teams</NavigationLink>
             </li>
           </ul>
         </nav>
       </Container>
     </StyledHeader>
   );
-};
 
 export default Header;

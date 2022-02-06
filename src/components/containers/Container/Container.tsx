@@ -12,12 +12,10 @@ interface IContainer {
 }
 
 
-const Container: FC<IContainer> = ({children}) => {
-  return (
+const Container: FC<IContainer> = ({children}) => (
     <StyledContainer>
       {children}
     </StyledContainer>
   );
-};
 
 export default Container;

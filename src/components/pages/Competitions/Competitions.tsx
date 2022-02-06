@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from 'react';
+import {useDispatch} from "react-redux";
 import {useTypedSelector} from "../../../store/selectors";
 import {fetchCompetition} from "../../../store/competition/actions";
-import {useDispatch} from "react-redux";
 import {Title2} from "../../microcomponents/titles/Titles";
 import CompetitionList from "../../lists/CompetitionList/CompetitionList";
 import Loading from "../../microcomponents/loading/Loading";
@@ -21,11 +21,11 @@ const Competitions: FC = () => {
       <Title2 centered>
         Actual competitions
       </Title2>
-      {loading ?
-        <Loading/> :
-        error ? <ErrorBanner error={error}/>
-        :
-          <CompetitionList competitions={competitions}/>
+      {loading
+        ? <Loading/>
+        : error
+          ? <ErrorBanner error={error}/>
+          : <CompetitionList competitions={competitions}/>
       }
     </div>
   );

@@ -8,10 +8,8 @@ const StyledImg = styled.img`
   margin: 0 auto;
 `
 
-const Loading: FC = () => {
-  return (
-    <StyledImg src={'/gifs/loading.gif'}/>
+const Loading: FC = () => (
+    <StyledImg src="/gifs/loading.gif"/>
   );
-};
 
 export default Loading;
