@@ -21,11 +21,11 @@ const Competitions: FC = () => {
       <Title2 centered>
         Actual competitions
       </Title2>
-      {loading ?
-        <Loading/> :
-        error ? <ErrorBanner error={error}/>
-        :
-          <CompetitionList competitions={competitions}/>
+      {loading
+        ? <Loading/>
+        : error
+          ? <ErrorBanner error={error}/>
+          : <CompetitionList competitions={competitions}/>
       }
     </div>
   );

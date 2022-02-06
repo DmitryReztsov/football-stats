@@ -75,21 +75,20 @@ const StyledTeamCard = styled(Link)<ITeamCardProps>`
 
 const TeamList: FC<ITeamList> = ({teams}) => (
     <StyledTeamList>
-      {teams.length ?
-        <>
-        {teams.map((team) => (
-              <StyledTeamCard
-                key={team.id}
-                to={`/teams/${team.id}`}
-                logo={team.logo!}
-              >
-                <div/>
-                <p>{team.name}</p>
-              </StyledTeamCard>
+      {teams.length
+        ? <>
+            {teams.map((team) => (
+                  <StyledTeamCard
+                    key={team.id}
+                    to={`/teams/${team.id}`}
+                    logo={team.logo!}
+                  >
+                    <div/>
+                    <p>{team.name}</p>
+                  </StyledTeamCard>
             ))}
           </>
-          :
-        <p>Teams aren`t found, change filters</p>
+        : <p>Teams aren`t found, change filters</p>
       }
 
     </StyledTeamList>

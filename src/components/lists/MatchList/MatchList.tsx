@@ -69,10 +69,12 @@ interface IMatchListProps {
 const MatchList: FC<IMatchListProps> = ({matches, count}) => {
   const [searchParams] = useSearchParams();
 
+  // Берем параметры из адресной строки
   const substr = searchParams.get('substr');
   const dateFrom = searchParams.get('dateFrom');
   const dateTo = searchParams.get('dateTo');
 
+  // Сортировка
   if (dateFrom || dateTo) matches = sortByDate(matches, dateFrom, dateTo)
   if (substr) matches = sortBySubstr(matches, substr)
 

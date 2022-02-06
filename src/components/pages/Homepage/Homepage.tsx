@@ -39,12 +39,11 @@ const Homepage: FC = () => {
       <Title2 centered>
         Today matches
       </Title2>
-      {loading ?
-        <Loading/> :
-        error ?
-          <ErrorBanner error={error}/>
-          :
-          <MatchList matches={matches} count={count}/>
+      {loading
+        ? <Loading/>
+        : error
+          ? <ErrorBanner error={error}/>
+          : <MatchList matches={matches} count={count}/>
       }
     </StyledHomePage>
   );

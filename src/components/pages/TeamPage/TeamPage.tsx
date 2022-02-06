@@ -133,11 +133,11 @@ const TeamPage: FC = () => {
 
 
       <Searchbar noSeason noCompetition/>
-      {loading ?
-        <Loading/> :
-        error ? <ErrorBanner error={error}/>
-        :
-          <>
+      {loading
+        ? <Loading/>
+        : error
+          ? <ErrorBanner error={error}/>
+          : <>
             <MatchList matches={matches} count={count}/>
             <Button click={() => setCount(state => state + 30)}>Show more</Button>
           </>

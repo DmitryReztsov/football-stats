@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import styled from "styled-components";
 import {Link, LinkProps} from "react-router-dom";
 import {ICompetition} from "../../../store/competition/types";
+import {transition} from "../../../styles/fragments";
 
 interface ICompetitionList {
   competitions: ICompetition []
@@ -32,7 +33,7 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 2px 3px 1px #cacaca;
-  transition: 0.5s all;
+  ${transition};
   color: ${({theme}) => theme.colors.black};
   
   @media ${({theme}) => theme.media.medium} {
@@ -42,7 +43,7 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
   
   &:hover {
     box-shadow: 0 6px 10px 3px #cacaca;
-    transition: 0.2s all;
+    ${transition};
   }
   
   & div {
@@ -70,6 +71,7 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
 
 const CompetitionList: FC<ICompetitionList> = ({competitions}) => (
     <StyledCompetitionList>
+      {/* Здесь я использовал передачу стейта при переходе по ссылке для уменьшения кол-ва запросов*/}
       {competitions.map((comp) => (
           <StyledCompetitionCard
             key={comp.id}

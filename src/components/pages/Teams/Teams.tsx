@@ -40,11 +40,11 @@ const Teams: FC = () => {
         Actual teams
       </Title2>
       <Searchbar noDate/>
-      {loading ?
-        <Loading/> :
-        error ? <ErrorBanner error={error}/>
-        :
-          <TeamList teams={teams}/>
+      {loading
+        ? <Loading/>
+        : error
+          ? <ErrorBanner error={error}/>
+          : <TeamList teams={teams}/>
       }
     </div>
   );

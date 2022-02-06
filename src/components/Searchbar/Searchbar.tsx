@@ -103,33 +103,31 @@ const Searchbar: FC<ISearchBarProps> = ({noDate,noCompetition,noSeason}) => {
 
   return (
     <StyledSearchbar>
-      {noDate ?
-        null
+      {noDate
+        ? null
         : <>
-          <div>
-            <span>From</span>
-            <InputDate value={dateFrom} setDate={setDateFromHandler}/>
-          </div>
-          <div>
-            <span>To</span>
-            <InputDate value={dateTo} setDate={setDateToHandler}/>
-          </div>
-        </>
+            <div>
+              <span>From</span>
+              <InputDate value={dateFrom} setDate={setDateFromHandler}/>
+            </div>
+            <div>
+              <span>To</span>
+              <InputDate value={dateTo} setDate={setDateToHandler}/>
+            </div>
+          </>
       }
-      {noCompetition ?
-        null
-        :
-        <Select value={competition} change={setCompetitionHandler}>
-          {competitions.map((comp) => <option key={comp.id} value={comp.id}>{comp.name}</option>)}
-        </Select>
+      {noCompetition
+        ? null
+        : <Select value={competition} change={setCompetitionHandler}>
+            {competitions.map((comp) => <option key={comp.id} value={comp.id}>{comp.name}</option>)}
+          </Select>
       }
-      {noSeason ?
-        null
-        :
-        <Select value={season} change={setSeasonHandler}>
-          <option value="">All seasons</option>
-          {DATE_ARRAY.map((date) => <option key={date} value={date}>{date}</option>)}
-        </Select>
+      {noSeason
+        ? null
+        : <Select value={season} change={setSeasonHandler}>
+            <option value="">All seasons</option>
+            {DATE_ARRAY.map((date) => <option key={date} value={date}>{date}</option>)}
+          </Select>
       }
       <InputSearch placeholder="Искать команду" value={substr} setSubstr={setSubstrHandler}/>
       <Button click={submitHandler}>Search</Button>

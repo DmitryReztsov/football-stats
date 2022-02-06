@@ -13,7 +13,7 @@ interface ISelectProps {
 }
 
 const Select: FC<ISelectProps> = ({children,change,value}) => (
-    <StyledSelect value={value} onChange={change} >
+    <StyledSelect value={value} onChange={change}>
       {children}
     </StyledSelect>
   );
