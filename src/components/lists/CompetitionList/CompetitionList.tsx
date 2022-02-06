@@ -51,7 +51,7 @@ const StyledCompetitionCard = styled(Link)<ICompetitionCardProps>`
     padding: 5rem;
     width: 80%;
     height: 80%;
-    background:${({code}) => `url('/assets/${code}.png') center no-repeat`};
+    background:${({code}) => `url('/football-stats/assets/${code}.png') center no-repeat`};
     background-size: contain;
     
     @media ${({theme}) => theme.media.small} {
