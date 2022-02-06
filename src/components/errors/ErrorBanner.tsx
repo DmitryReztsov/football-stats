@@ -26,7 +26,7 @@ const StyledErrorBanner = styled.div`
 
 const ErrorBanner: FC<IErrorBannerProps> = ({error}) => (
     <StyledErrorBanner>
-      <img src="/error/sad-ball.png" alt="error-logo"/>
+      <img src="/football-stats/error/sad-ball.png" alt="error-logo"/>
       <Title2>Error {error}</Title2>
       <p>{errors.get(error)}</p>
     </StyledErrorBanner>

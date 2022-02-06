@@ -9,7 +9,7 @@ const StyledImg = styled.img`
 `
 
 const Loading: FC = () => (
-    <StyledImg src="/gifs/loading.gif"/>
+    <StyledImg src="/football-stats/gifs/loading.gif"/>
   );
 
 export default Loading;
